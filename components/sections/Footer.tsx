@@ -16,8 +16,8 @@ function Footer() {
             </div>
             <p className="text-slate-400">
               Your trusted partner in learning to drive safely and confidently.
-              Join thousands of satisfied students who've earned their license
-              with us.
+              Join thousands of satisfied students who&apos;ve earned their
+              license with us.
             </p>
           </div>
 

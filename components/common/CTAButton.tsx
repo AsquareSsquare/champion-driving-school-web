@@ -1,7 +1,7 @@
 "use client";
 
 import { cn, scrollToSection } from "@/lib/utils";
-import { ArrowRight, LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CTAButtonProps {

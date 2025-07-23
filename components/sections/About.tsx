@@ -11,9 +11,9 @@ function About() {
             Why Choose Champion Driving School?
           </h1>
           <p className="text-center max-w-4xl text-lg text-muted-foreground">
-            With over a decade of experience, we've helped thousands of students
-            become confident, safe drivers. Our comprehensive approach combines
-            modern teaching methods with personalized attention.
+            With over a decade of experience, we&apos;ve helped thousands of
+            students become confident, safe drivers. Our comprehensive approach
+            combines modern teaching methods with personalized attention.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">

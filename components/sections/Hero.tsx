@@ -1,5 +1,5 @@
 import { GridBackground } from "@/components/ui/grid-background";
-import { ArrowRight, Award, CheckCircle, Clock4 } from "lucide-react";
+import { Award, CheckCircle, Clock4 } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import MaskedDiv from "@/components/ui/masked-div";
@@ -22,8 +22,8 @@ function Hero() {
               </h1>
               <p className="text-xl">
                 Professional driving lessons tailored to your pace. From
-                first-time drivers to advanced skills - we'll get you road-ready
-                safely and efficiently.
+                first-time drivers to advanced skills - we&apos;ll get you
+                road-ready safely and efficiently.
               </p>
               <div className="flex items-center gap-4">
                 <CTAButton
