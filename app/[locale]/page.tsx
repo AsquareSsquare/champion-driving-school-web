@@ -14,6 +14,8 @@ export default async function Home() {
       <About />
       <Branch />
       <Course />
+      {/*TODO: Instructor Section*/}
+      {/*TODO: Gallery Section*/}
       <Contact />
       <Footer />
     </>
