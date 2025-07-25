@@ -1,11 +1,23 @@
 import {
   AboutCard,
+  AdditionalService,
   Branch,
   Contact,
   Course,
+  Instructor,
   Language,
+  LicenceService,
 } from "@/types/root-types";
-import { Clock, Mail, MapPin, Phone, Shield, Users } from "lucide-react";
+import {
+  Clock,
+  FileText,
+  Mail,
+  MapPin,
+  Phone,
+  RefreshCcw,
+  Shield,
+  Users,
+} from "lucide-react";
 
 export const languageCode: Language[] = [
   {
@@ -23,7 +35,8 @@ export const navItems = [
   "about",
   "branches",
   "courses",
-  // "gallery",
+  "instructors",
+  "gallery",
   "contact",
 ];
 
@@ -61,7 +74,7 @@ export const branches: Branch[] = [
   {
     title: "Jalchak branch",
     location:
-      "beside Tvs and hero showroom, Jalchak, Gokul Chak, West Bengal 721155",
+      "Beside Tvs and hero showroom, Jalchak, Gokul Chak, West Bengal 721155",
     phone: "+91 8768015877",
     timings: "Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM",
     features: [
@@ -130,7 +143,79 @@ export const contactOptions: Contact[] = [
   {
     icon: MapPin,
     label: "Address",
-    value: "123 Main Street, Your City, State 12345",
+    value:
+      "Beside Tvs and hero showroom, Jalchak, Gokul Chak, West Bengal 721155",
     gradient: "from-purple-500" + " to-violet-500",
   },
+];
+
+export const licenceServices: LicenceService[] = [
+  {
+    title: "Motorcycle Without Gear",
+    description: "Non-Transport motorcycle license",
+    icon: "/vehicles/scooter.svg",
+    tag: "MCWOG",
+  },
+  {
+    title: "Motorcycle With Gear",
+    description: "Non-Transport geared motorcycle license",
+    icon: "/vehicles/motorcycle.svg",
+    tag: "MCWG",
+  },
+  {
+    title: "Light Motor Vehicle",
+    description: "Standard car driving license",
+    icon: "/vehicles/car.svg",
+    tag: "LMV",
+  },
+  {
+    title: "3 Wheeler Non-Transport",
+    description: "Auto-rickshaw and similar vehicles",
+    icon: "/vehicles/three-wheel-car.svg",
+    tag: "3W-NT",
+  },
+  {
+    title: "Tractor Non-Transport",
+    description: "Agricultural tractor license",
+    icon: "/vehicles/tractor.svg",
+    tag: "TRCTOR",
+  },
+];
+
+export const additionalServices: AdditionalService[] = [
+  {
+    title: "Vehicle Ownership Change",
+    description: "Complete transfer documentation and legal assistance",
+    icon: RefreshCcw,
+  },
+  {
+    title: "Police Challan Assistance",
+    description: "Traffic violation resolution and payment support",
+    icon: FileText,
+  },
+  {
+    title: "Vehicle Insurance Services",
+    description: "Comprehensive insurance plans and claim assistance",
+    icon: Shield,
+  },
+];
+
+export const instructors: Instructor[] = [
+  {
+    name: "Subal Chandra Shaoo",
+    designation: "Car & Motorcycle Training",
+    experience: "13+",
+    taught: "500+",
+    certificates: ["RTO Certified", "Safety Expert"],
+    image: "/instructors/Subal-chandra-shaoo.jpeg",
+  },
+];
+
+export const galleryImages = [
+  "/gallery/img_1.jpg",
+  "/gallery/img_2.jpg",
+  "/gallery/img_3.jpg",
+  "/gallery/img_4.jpg",
+  "/gallery/img_5.jpeg",
+  "/gallery/img_6.jpeg",
 ];

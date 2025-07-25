@@ -1,6 +1,7 @@
 import React from "react";
 import { courses } from "@/constants/data";
 import CourseCard from "@/components/core/CourseCard";
+import OtherServices from "@/components/core/OtherServices";
 
 function Course() {
   return (
@@ -17,6 +18,7 @@ function Course() {
             <CourseCard key={index} course={course} />
           ))}
         </div>
+        <OtherServices />
       </div>
     </section>
   );

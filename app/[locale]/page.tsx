@@ -5,6 +5,8 @@ import Branch from "@/components/sections/Branch";
 import Course from "@/components/sections/Course";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
+import Instructors from "@/components/sections/Instructors";
+import Gallery from "@/components/sections/Gallery";
 
 export default async function Home() {
   return (
@@ -14,8 +16,8 @@ export default async function Home() {
       <About />
       <Branch />
       <Course />
-      {/*TODO: Instructor Section*/}
-      {/*TODO: Gallery Section*/}
+      <Instructors />
+      <Gallery />
       <Contact />
       <Footer />
     </>

@@ -1,14 +1,16 @@
 import React from "react";
 import { Course } from "@/types/root-types";
 import { Badge } from "@/components/ui/badge";
-import { Check, Clock, IndianRupee } from "lucide-react";
+import { Check, Clock, IndianRupee, Star } from "lucide-react";
 import CTAButton from "@/components/common/CTAButton";
 
 function CourseCard({ course }: { course: Course }) {
   return (
     <div className="relative p-6 rounded-xl bg-muted shadow-md border cursor-pointer hover:-translate-y-1 transition-transform duration-200">
       {course.popular && (
-        <Badge className="absolute -top-2.5">Most Popular</Badge>
+        <Badge className="absolute -top-2.5">
+          <Star /> Most Popular
+        </Badge>
       )}
       <h1 className="text-xl font-bold text-gray-900 mb-4 text-center">
         {course.title}

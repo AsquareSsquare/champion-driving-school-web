@@ -36,3 +36,25 @@ export interface Contact {
   value: string;
   gradient: string;
 }
+
+export interface LicenceService {
+  title: string;
+  description: string;
+  icon: string;
+  tag: string;
+}
+
+export interface AdditionalService {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+export interface Instructor {
+  name: string;
+  designation: string;
+  experience: string;
+  taught: string;
+  certificates: string[];
+  image?: string;
+}
