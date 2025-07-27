@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
   if (nextUrl.pathname.startsWith(`/${locale}/${DASHBOARD_PAGE}`)) {
     const { user } = await getLoggedInUser();
     if (!user) {
-      return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl));
+      return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl), 302);
     }
   }
   return intlResponse;
