@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React from "react";
 import {
   FormControl,
   FormField,
@@ -54,8 +54,10 @@ function FormSelectField<T extends FieldValues>({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {items.map((item) => (
-                <SelectItem value={item.value}>{item.label}</SelectItem>
+              {items.map((item, index) => (
+                <SelectItem key={index} value={item.value}>
+                  {item.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
