@@ -58,3 +58,9 @@ export interface Instructor {
   certificates: string[];
   image?: string;
 }
+
+export interface SideBarMenu {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+}

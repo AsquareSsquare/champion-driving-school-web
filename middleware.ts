@@ -1,20 +1,25 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
-import { NextRequest } from "next/server";
-import { DASHBOARD_PAGE } from "@/constants/data";
-import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
+import { DASHBOARD_PAGE, SIGN_IN_PAGE } from "@/constants/data";
 import { getLocale } from "next-intl/server";
+import { getLoggedInUser } from "@/services/server-actions/userActions";
 
 const intlMiddleware = createMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
   const { nextUrl } = request;
+  const intlResponse = intlMiddleware(request);
   const locale = await getLocale();
+
+  // Auth check
   if (nextUrl.pathname.startsWith(`/${locale}/${DASHBOARD_PAGE}`)) {
-    const cookieStore = await cookies();
-    console.log("Cookies: ", cookieStore.get("jwt_token"));
+    const { user } = await getLoggedInUser();
+    if (!user) {
+      return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl));
+    }
   }
-  return intlMiddleware(request);
+  return intlResponse;
 }
 
 export const config = {
