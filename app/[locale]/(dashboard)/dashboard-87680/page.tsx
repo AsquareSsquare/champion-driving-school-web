@@ -1,9 +1,14 @@
 import React from "react";
+import { getLoggedInUser } from "@/services/server-actions/userActions";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const { user, message } = await getLoggedInUser();
   return (
     <div>
-      <p>Dashboard</p>
+      <p>
+        {user?.name}
+        {message}
+      </p>
     </div>
   );
 }
