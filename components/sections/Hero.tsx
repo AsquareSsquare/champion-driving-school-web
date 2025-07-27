@@ -12,7 +12,7 @@ function Hero() {
         <div className="w-full h-screen max-w-7xl mx-auto z-20 flex items-center justify-between">
           <div className="w-full flex items-center justify-between flex-col xl:flex-row px-6 xl:px-0 gap-16 xl:gap-0">
             <div className="max-w-[600px] space-y-6">
-              <Badge className="bg-accent cursor-pointer">
+              <Badge className="bg-slate-800 cursor-pointer">
                 <Award className="text-blue-500" />
                 Trusted by 1000+ students
               </Badge>
@@ -49,7 +49,7 @@ function Hero() {
                   className="rounded-xl"
                 />
               </MaskedDiv>
-              <div className="p-4 rounded-xl bg-accent absolute -top-6.5 hover:-translate-y-0.5 transition-transform duration-200 cursor-pointer">
+              <div className="p-4 rounded-xl bg-slate-800 absolute -top-6.5 hover:-translate-y-0.5 transition-transform duration-200 cursor-pointer">
                 <p className="text-white">
                   <span className="font-bold text-green-500">99%</span> Pass
                   rate

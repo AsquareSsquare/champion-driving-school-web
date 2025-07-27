@@ -1,5 +1,4 @@
 import React from "react";
-import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { galleryImages } from "@/constants/data";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";

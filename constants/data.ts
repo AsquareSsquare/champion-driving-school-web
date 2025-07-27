@@ -18,6 +18,11 @@ import {
   Shield,
   Users,
 } from "lucide-react";
+import { MultiSelectOption } from "@/components/ui/multiselect";
+
+// PAGES
+export const SIGN_IN_PAGE = "champion-driving-sign-in";
+export const DASHBOARD_PAGE = "dashboard-87680";
 
 export const languageCode: Language[] = [
   {
@@ -124,6 +129,25 @@ export const courses: Course[] = [
       "Dual license preparation",
     ],
     popular: true,
+  },
+];
+
+export const courseSelectItems: MultiSelectOption[] = [
+  {
+    label: "Car Driving Course",
+    value: "LMV",
+  },
+  {
+    label: "Car + Bike Driving Course",
+    value: "LMV+MCWG",
+  },
+  {
+    label: "Motorcycle With Gear",
+    value: "MCWG",
+  },
+  {
+    label: "Motorcycle Without Gear",
+    value: "MCWOG",
   },
 ];
 

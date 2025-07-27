@@ -1,80 +1,111 @@
-import React from "react";
+"use client";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { courses } from "@/constants/data";
-import { Textarea } from "@/components/ui/textarea";
+import { courseSelectItems } from "@/constants/data";
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { contactSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "@/components/ui/form";
+import FormInputField from "@/components/form-fields/form-input-field";
+import FormTextareaField from "@/components/form-fields/form-textarea-field";
+import MultipleSelector, {
+  MultiSelectOption,
+} from "@/components/ui/multiselect";
+import { useState } from "react";
 
 function ContactForm() {
+  const [courses, setCourses] = useState<MultiSelectOption[]>([]);
+  const form = useForm<z.infer<typeof contactSchema>>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      course: "",
+      message: "",
+    },
+  });
   return (
-    <form className="space-y-6">
-      <h2 className="text-xl font-bold text-white">Book your lesson</h2>
-      <div className="grid grid-cols-2 gap-6">
-        <div className="space-y-3">
-          <Label className="text-white">First Name</Label>
-          <Input
-            placeholder="Enter your first name"
-            className="text-white bg-slate-700/50 border border-slate-600/50"
-          ></Input>
+    <Form {...form}>
+      <form className="space-y-6">
+        <h2 className="text-xl font-bold text-white">Book your lesson</h2>
+        <div className="grid grid-cols-2 gap-6">
+          <FormInputField
+            control={form.control}
+            name="firstName"
+            label="First Name"
+            inputType="text"
+            placeholder="Enter First Name"
+            labelClassName="text-white"
+            inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+          />
+          <FormInputField
+            control={form.control}
+            name="lastName"
+            label="Last Name"
+            inputType="text"
+            placeholder="Enter Last Name"
+            labelClassName="text-white"
+            inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+          />
         </div>
-        <div className="space-y-3">
-          <Label className="text-white">Last Name</Label>
-          <Input
-            placeholder="Enter your last name"
-            className="text-white bg-slate-700/50 border border-slate-600/50"
-          ></Input>
-        </div>
-      </div>
-      <div className="space-y-3">
-        <Label className="text-white">Email</Label>
-        <Input
+        <FormInputField
+          control={form.control}
+          name="email"
+          label="Email"
+          inputType="email"
           placeholder="Enter your email"
-          className="text-white bg-slate-700/50 border border-slate-600/50"
-        ></Input>
-      </div>
-      <div className="space-y-3">
-        <Label className="text-white">Phone</Label>
-        <Input
-          placeholder="Enter your phone number"
-          className="text-white bg-slate-700/50 border border-slate-600/50"
-        ></Input>
-      </div>
-      <div className="space-y-3">
-        <Label className="text-white">Select course</Label>
-        <Select>
-          <SelectTrigger className="w-full bg-slate-700/50 border border-slate-600/50 text-white">
-            <SelectValue placeholder="Select course"></SelectValue>
-          </SelectTrigger>
-          <SelectContent className="bg-slate-700 border border-slate-600/50">
-            {courses.map((course, index) => (
-              <SelectItem
-                key={index}
-                value={course.title}
-                className="text-white focus:bg-accent focus:text-accent-foreground"
-              >
-                {course.title}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-3">
-        <Label className="text-white">Message</Label>
-        <Textarea
+          labelClassName="text-white"
+          inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+        />
+        <FormInputField
+          control={form.control}
+          name="phone"
+          label="Phone"
+          inputType="text"
+          placeholder="Enter Phone Number"
+          labelClassName="text-white"
+          inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+        />
+        <div className="space-y-3">
+          <Label className="text-white">Select courses</Label>
+          <MultipleSelector
+            commandProps={{
+              label: "Select frameworks",
+            }}
+            inputProps={{
+              className: "text-white",
+            }}
+            className="border-slate-600/50 bg-slate-700/50"
+            badgeClassName="bg-primary text-white border-transparent hover:bg-primary/90 transition-opacity duration-300"
+            crossIconClassName="text-gray-200"
+            selectListClassName="bg-slate-700"
+            itemClassName="text-white data-[selected=true]:bg-slate-600 data-[selected=true]:text-gray-200"
+            value={courses}
+            onChange={(value) => setCourses(value)}
+            defaultOptions={courseSelectItems}
+            placeholder="Select frameworks"
+            hideClearAllButton
+            hidePlaceholderWhenSelected
+            emptyIndicator={
+              <p className="text-center text-sm text-white">No results found</p>
+            }
+          />
+        </div>
+        <FormTextareaField
+          control={form.control}
+          name="message"
+          label="Message"
           placeholder="Enter your Message (Optional)"
-          className="bg-slate-700/50 border border-slate-600/50 field-sizing-content resize-none max-h-29.5 min-h-0 py-1.75 text-white"
-        ></Textarea>
-      </div>
+          labelClassName="text-white"
+          inputClassName="bg-slate-700/50 border border-slate-600/50 field-sizing-content resize-none max-h-29.5 min-h-0 py-1.75 text-white"
+        />
 
-      <Button className="w-full">Book your lesson</Button>
-    </form>
+        <Button className="w-full">Book your lesson</Button>
+      </form>
+    </Form>
   );
 }
 
