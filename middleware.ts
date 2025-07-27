@@ -12,11 +12,14 @@ export async function middleware(request: NextRequest) {
   const intlResponse = intlMiddleware(request);
   const locale = await getLocale();
 
+  console.log("Resolved locale:", locale); // Log the locale
+
   // Auth check
   if (nextUrl.pathname.startsWith(`/${locale}/${DASHBOARD_PAGE}`)) {
     const { user } = await getLoggedInUser();
+    console.log("User:", user); // Log the user object
     if (!user) {
-      return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl), 302);
+      return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl));
     }
   }
   return intlResponse;
