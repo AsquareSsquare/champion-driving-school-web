@@ -22,7 +22,7 @@ function BranchCard({ branch }: { branch: Branch }) {
           <span className="text-gray-700">{branch.timings}</span>
         </div>
       </div>
-      <div className="mt-6 h-[280px] w-[350px] aspect-square rounded-xl overflow-hidden">
+      <div className="mt-6 h-[280px] w-full xs:w-[350px] aspect-square rounded-xl overflow-hidden">
         <iframe
           src={branch.location}
           width="350"
