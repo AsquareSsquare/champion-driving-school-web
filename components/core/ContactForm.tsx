@@ -73,7 +73,7 @@ function ContactForm() {
           <Label className="text-white">Select courses</Label>
           <MultipleSelector
             commandProps={{
-              label: "Select frameworks",
+              label: "Select license type",
             }}
             inputProps={{
               className: "text-white",
