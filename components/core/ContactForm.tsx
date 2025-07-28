@@ -86,7 +86,7 @@ function ContactForm() {
             value={courses}
             onChange={(value) => setCourses(value)}
             defaultOptions={courseSelectItems}
-            placeholder="Select frameworks"
+            placeholder="Select license type"
             hideClearAllButton
             hidePlaceholderWhenSelected
             emptyIndicator={
