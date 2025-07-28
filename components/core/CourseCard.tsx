@@ -12,17 +12,13 @@ function CourseCard({ course }: { course: Course }) {
           <Star /> Most Popular
         </Badge>
       )}
-      <h1 className="text-xl font-bold text-gray-900 mb-4 text-center">
-        {course.title}
-      </h1>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-center gap-4">
+        <h1 className="text-xl font-bold text-gray-900 text-center">
+          {course.title}
+        </h1>
         <div className="flex items-center space-x-2 text-gray-600">
-          <Clock className="h-4 w-4 text-blue-500" />
-          <span className="text-sm font-medium">{course.days}</span>
-        </div>
-        <div className="flex items-center space-x-1 text-green-500">
-          <IndianRupee size={18} />
-          <span className="text-lg font-bold">{course.price}</span>
+          <Clock size={25} className="text-blue-500" />
+          <span className="font-bold">{course.days}</span>
         </div>
       </div>
       <div className="mt-6">

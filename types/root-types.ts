@@ -16,16 +16,15 @@ export interface AboutCard {
 
 export interface Branch {
   title: string;
-  location: string;
+  address: string;
   phone: string;
   timings: string;
-  features: string[];
+  location: string;
 }
 
 export interface Course {
   title: string;
   days: string;
-  price: string;
   offers: string[];
   popular: boolean;
 }

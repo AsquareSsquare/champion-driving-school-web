@@ -45,6 +45,28 @@ export const navItems = [
   "contact",
 ];
 
+export const addLearnerSteps = [
+  {
+    step: 1,
+    title: "Learners details",
+  },
+  {
+    step: 2,
+    title: "Payment details",
+  },
+];
+
+export const userRole = [
+  {
+    label: "Staff",
+    value: "staff",
+  },
+  {
+    label: "Admin",
+    value: "admin",
+  },
+];
+
 export const abouts: AboutCard[] = [
   {
     icon: Shield,
@@ -78,26 +100,20 @@ export const abouts: AboutCard[] = [
 export const branches: Branch[] = [
   {
     title: "Jalchak branch",
-    location:
+    address:
       "Beside Tvs and hero showroom, Jalchak, Gokul Chak, West Bengal 721155",
     phone: "+91 8768015877",
     timings: "Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM",
-    features: [
-      "Modern vehicles",
-      "Experienced instructors",
-      "Theory classroom",
-    ],
+    location:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.8810822668797!2d87.6673028!3d22.2445903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02b785b3e4d665%3A0x232b67515b96a325!2sChampion%20driving%20training%20school!5e0!3m2!1sen!2sin!4v1753703509532!5m2!1sen!2sin",
   },
   {
     title: "Moyna branch",
-    location: "7Q2G+7W7, Moyna, Road, Mundumari, Garmayna, West Bengal 721629",
+    address: "7Q2G+7W7, Moyna, Road, Mundumari, Garmayna, West Bengal 721629",
     phone: "+91 8768015877",
     timings: "Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM",
-    features: [
-      "Dual-control cars",
-      "Simulation training",
-      "Test route practice",
-    ],
+    location:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.721035877922!2d87.77473347552214!3d22.250660779722406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02bf313a9a41e9%3A0x6a2adea2a6fde0af!2sHoglabari%20Bus%20Stop!5e0!3m2!1sen!2sin!4v1753704666985!5m2!1sen!2sin",
   },
 ];
 
@@ -105,7 +121,6 @@ export const courses: Course[] = [
   {
     title: "Car Driving Course",
     days: "22 days",
-    price: "8000",
     offers: [
       "Complete car driving training",
       "Theory and practical classes",
@@ -119,7 +134,6 @@ export const courses: Course[] = [
   {
     title: "Car + Bike Driving Course",
     days: "22 days",
-    price: "9000",
     offers: [
       "Complete car driving training",
       "Complete bike driving training",

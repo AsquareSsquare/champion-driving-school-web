@@ -1,5 +1,5 @@
 import { SideBarMenu } from "@/types/root-types";
-import { PlusCircleIcon, Users } from "lucide-react";
+import { PlusCircleIcon, Split, UserPlus, Users } from "lucide-react";
 import { DASHBOARD_PAGE } from "@/constants/data";
 
 export const sideBarNavItems: SideBarMenu[] = [
@@ -9,8 +9,21 @@ export const sideBarNavItems: SideBarMenu[] = [
     icon: Users,
   },
   {
-    title: "Create learners",
+    title: "Add learner",
     url: `/${DASHBOARD_PAGE}/create-learner`,
     icon: PlusCircleIcon,
+  },
+];
+
+export const sideBarNavItemsAdmin: SideBarMenu[] = [
+  {
+    title: "Add branch",
+    url: `/${DASHBOARD_PAGE}/create-branch`,
+    icon: Split,
+  },
+  {
+    title: "Add staff",
+    url: `/${DASHBOARD_PAGE}/create-staff`,
+    icon: UserPlus,
   },
 ];

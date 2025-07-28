@@ -5,6 +5,11 @@ import { DASHBOARD_PAGE, SIGN_IN_PAGE } from "@/constants/data";
 import { getLocale } from "next-intl/server";
 import { getLoggedInUser } from "@/services/server-actions/userActions";
 
+const adminRouts = [
+  `/${DASHBOARD_PAGE}/create-branch`,
+  `/${DASHBOARD_PAGE}/create-staff`,
+];
+
 const intlMiddleware = createMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
@@ -17,6 +22,12 @@ export async function middleware(request: NextRequest) {
     const { user } = await getLoggedInUser();
     if (!user) {
       return NextResponse.redirect(new URL(`/${SIGN_IN_PAGE}`, nextUrl));
+    }
+    const isAdminRoute = adminRouts.find(
+      (route) => nextUrl.pathname === `/${locale}${route}`,
+    );
+    if (user.role !== "admin" && isAdminRoute) {
+      return NextResponse.redirect(new URL(`/${DASHBOARD_PAGE}`, nextUrl));
     }
   }
   return intlResponse;

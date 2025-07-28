@@ -47,9 +47,13 @@ function FormSelectField<T extends FieldValues>({
       render={({ field }) => (
         <FormItem className="grid gap-3">
           <FormLabel className={cn(labelClassName)}>{label}</FormLabel>
-          <Select defaultValue={field.value} onValueChange={field.onChange}>
+          <Select
+            defaultValue={field.value}
+            value={field.value}
+            onValueChange={field.onChange}
+          >
             <FormControl>
-              <SelectTrigger className={cn(inputClassName)}>
+              <SelectTrigger className={cn("w-full", inputClassName)}>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>

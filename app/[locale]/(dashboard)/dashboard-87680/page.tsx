@@ -1,14 +1,12 @@
 import React from "react";
-import { getLoggedInUser } from "@/services/server-actions/userActions";
+import DashboardContent from "@/components/app-sidebar/dashboard-content";
 
 export default async function DashboardPage() {
-  const { user, message } = await getLoggedInUser();
   return (
-    <div>
-      <p>
-        {user?.name}
-        {message}
-      </p>
-    </div>
+    <DashboardContent header="All Learners">
+      <div className="w-full max-w-xl px-6">
+        <p>Learners</p>
+      </div>
+    </DashboardContent>
   );
 }
