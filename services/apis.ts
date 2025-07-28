@@ -1,5 +1,7 @@
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-const serverUrl = `${process.env.SERVER_LOCATION}${baseUrl}`;
+import { getBesUrl } from "@/lib/utils";
+
+const baseUrl = getBesUrl();
+const serverUrl = `${process.env.SERVER_LOCATION}/api`;
 
 export const authEndpoints = {
   LOGIN_API: `${baseUrl}/auth/login`,

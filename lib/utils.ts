@@ -8,3 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 export function scrollToSection(sectionId: string) {
   document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
 }
+
+export function getBesUrl() {
+  if (process.env.NEXT_PUBLIC_APP_ENVIRONMENT === "DEV") {
+    return process.env.NEXT_PUBLIC_BASE_URL_DEV;
+  }
+  return process.env.NEXT_PUBLIC_BASE_URL_PROD;
+}
