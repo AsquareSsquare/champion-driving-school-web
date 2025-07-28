@@ -1,11 +1,11 @@
 import React from "react";
 import DashboardContent from "@/components/app-sidebar/dashboard-content";
 
-export default async function DashboardPage() {
+export default function BookingsPage() {
   return (
-    <DashboardContent header="All Learners">
+    <DashboardContent header="All bookings">
       <div className="w-full mx-6">
-        <p>Learners</p>
+        <p>Bookings</p>
       </div>
     </DashboardContent>
   );

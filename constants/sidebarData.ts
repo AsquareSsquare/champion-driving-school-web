@@ -1,5 +1,5 @@
 import { SideBarMenu } from "@/types/root-types";
-import { PlusCircleIcon, Split, UserPlus, Users } from "lucide-react";
+import { Calendar, PlusCircleIcon, Split, UserPlus, Users } from "lucide-react";
 import { DASHBOARD_PAGE } from "@/constants/data";
 
 export const sideBarNavItems: SideBarMenu[] = [
@@ -16,6 +16,11 @@ export const sideBarNavItems: SideBarMenu[] = [
 ];
 
 export const sideBarNavItemsAdmin: SideBarMenu[] = [
+  {
+    title: "Bookings",
+    url: `/${DASHBOARD_PAGE}/bookings`,
+    icon: Calendar,
+  },
   {
     title: "Add branch",
     url: `/${DASHBOARD_PAGE}/create-branch`,

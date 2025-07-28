@@ -8,6 +8,7 @@ import { getLoggedInUser } from "@/services/server-actions/userActions";
 const adminRouts = [
   `/${DASHBOARD_PAGE}/create-branch`,
   `/${DASHBOARD_PAGE}/create-staff`,
+  `/${DASHBOARD_PAGE}/bookings`,
 ];
 
 const intlMiddleware = createMiddleware(routing);
