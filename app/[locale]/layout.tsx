@@ -130,11 +130,6 @@ export default async function RootLayout({
               "email": "info@championdrivingschool.in",
               "openingHours": "Mo-Su 06:00-20:00",
               "priceRange": "₹₹",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "150"
-              },
               "serviceType": [
                 "Car Driving Lessons",
                 "Bike Driving Lessons",
