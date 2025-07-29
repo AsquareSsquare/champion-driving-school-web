@@ -21,7 +21,7 @@ function Gallery() {
               <Image
                 key={i}
                 src={image}
-                alt="gallaryIMG"
+                alt={`Champion Driving School gallery - Professional driving training facility and vehicles ${i + 1}`}
                 width={400}
                 height={400}
                 className="object-cover object-left-top rounded-lg"

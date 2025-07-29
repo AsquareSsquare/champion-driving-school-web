@@ -44,7 +44,7 @@ function NavUser({ loading, user }: { loading: boolean; user: User | null }) {
           <Avatar className="h-8 w-8 rounded-lg">
             <AvatarImage
               src={`https://api.dicebear.com/9.x/initials/svg?seed=${user?.name}`}
-              alt={user?.name}
+              alt={`Champion Driving School user avatar - ${user?.name}`}
             />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
           </Avatar>

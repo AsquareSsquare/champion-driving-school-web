@@ -17,17 +17,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Champion driving school | Driving lessons in Purba Medinipur",
+  title: "Champion Driving School - Moyna & Jalchak | Expert Car & Bike Training",
   description:
-    "Join SafeDrive Academy for expert driving lessons in Purba Medinipur. Learn defensive driving, pass your license test, and drive confidently. Book now!",
+    "Champion Driving School offers expert car and bike driving training in Moyna and Jalchak. Learn with certified trainers, 99% pass rate. Book your driving lessons today!",
   keywords: [
-    "driving school Purba Medinipur",
-    "driving lessons",
+    "Champion Driving School",
+    "driving school Moyna",
+    "driving school Jalchak",
+    "car driving lessons",
+    "bike driving lessons",
+    "driving instructor",
+    "driving license training",
     "defensive driving course",
     "learn to drive",
-    "driving instructor Purba Medinipur",
-    "license test preparation",
+    "driving test preparation",
+    "Purba Medinipur driving school",
+    "West Bengal driving lessons",
   ],
+  authors: [{ name: "Champion Driving School" }],
+  creator: "Champion Driving School",
+  publisher: "Champion Driving School",
   robots: {
     index: true,
     follow: true,
@@ -40,16 +49,37 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://champion-driving-school.vercel.app", // Update with your domain
+    canonical: "https://www.championdrivingschool.in",
     languages: {
       "en-US": "/en",
       bn: "/bn",
-      // Add other locales as needed
     },
   },
-  // icons: {
-  //   icon: "/favicon.ico",
-  // },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.championdrivingschool.in",
+    title: "Champion Driving School - Expert Car & Bike Training in Moyna & Jalchak",
+    description: "Professional driving lessons with certified instructors. 99% pass rate. Book your driving course today!",
+    siteName: "Champion Driving School",
+    images: [
+      {
+        url: "/images/hero_image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Champion Driving School - Professional driving training",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Champion Driving School - Expert Car & Bike Training",
+    description: "Professional driving lessons with certified instructors. 99% pass rate.",
+    images: ["/images/hero_image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default async function RootLayout({
@@ -66,6 +96,73 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "DrivingSchool",
+              "name": "Champion Driving School",
+              "description": "Professional driving lessons with certified instructors in Moyna and Jalchak",
+              "url": "https://www.championdrivingschool.in",
+              "logo": "https://www.championdrivingschool.in/favicon.ico",
+              "image": "https://www.championdrivingschool.in/images/hero_image.jpg",
+              "address": [
+                {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Moyna - Jalchak Road",
+                  "addressLocality": "Moyna",
+                  "addressRegion": "West Bengal",
+                  "postalCode": "721155",
+                  "addressCountry": "IN"
+                },
+                {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Jalchak Main Road",
+                  "addressLocality": "Jalchak",
+                  "addressRegion": "West Bengal",
+                  "postalCode": "721629",
+                  "addressCountry": "IN"
+                }
+              ],
+              "telephone": "+91-8768015877",
+              "email": "info@championdrivingschool.in",
+              "openingHours": "Mo-Su 06:00-20:00",
+              "priceRange": "₹₹",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "150"
+              },
+              "serviceType": [
+                "Car Driving Lessons",
+                "Bike Driving Lessons",
+                "License Test Preparation",
+                "Defensive Driving Course"
+              ],
+              "areaServed": [
+                {
+                  "@type": "City",
+                  "name": "Moyna"
+                },
+                {
+                  "@type": "City",
+                  "name": "Jalchak"
+                },
+                {
+                  "@type": "City",
+                  "name": "Purba Medinipur"
+                }
+              ],
+              "sameAs": [
+                "https://www.facebook.com/championdrivingschool",
+                "https://www.instagram.com/championdrivingschool"
+              ]
+            })
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

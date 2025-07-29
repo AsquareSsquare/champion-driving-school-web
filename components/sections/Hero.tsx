@@ -43,7 +43,7 @@ function Hero() {
               <MaskedDiv maskType="type-2">
                 <Image
                   src="/images/hero_image.jpg"
-                  alt="hero"
+                  alt="Champion Driving School - Professional driving training with certified instructors"
                   width={600}
                   height={600}
                   className="rounded-xl"

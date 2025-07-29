@@ -29,7 +29,7 @@ function ContactForm() {
   });
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form className="space-y-6" role="form" aria-label="Book your driving lesson">
         <h2 className="text-xl font-bold text-white">Book your lesson</h2>
         <div className="grid grid-cols-2 gap-6">
           <FormInputField
@@ -64,7 +64,7 @@ function ContactForm() {
           control={form.control}
           name="phone"
           label="Phone"
-          inputType="text"
+          inputType="tel"
           placeholder="Enter Phone Number"
           labelClassName="text-white"
           inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
@@ -77,6 +77,7 @@ function ContactForm() {
             }}
             inputProps={{
               className: "text-white",
+              "aria-label": "Select driving course type",
             }}
             className="border-slate-600/50 bg-slate-700/50"
             badgeClassName="bg-primary text-white border-transparent hover:bg-primary/90 transition-opacity duration-300"
@@ -98,12 +99,17 @@ function ContactForm() {
           control={form.control}
           name="message"
           label="Message"
-          placeholder="Enter your Message (Optional)"
+          placeholder="Tell us about your requirements"
           labelClassName="text-white"
           inputClassName="bg-slate-700/50 border border-slate-600/50 field-sizing-content resize-none max-h-29.5 min-h-0 py-1.75 text-white"
         />
-
-        <Button className="w-full">Book your lesson</Button>
+        <Button
+          type="submit"
+          className="w-full bg-primary hover:bg-primary/90 text-white"
+          aria-label="Submit booking request"
+        >
+          Book Now
+        </Button>
       </form>
     </Form>
   );

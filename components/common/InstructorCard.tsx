@@ -12,7 +12,7 @@ function InstructorCard({ instructor }: { instructor: Instructor }) {
           instructor.image ||
           "/instructors/profile_avatar_placeholder_large.png"
         }
-        alt="instructorIMG"
+        alt={`Champion Driving School instructor - ${instructor.name} - ${instructor.designation}`}
         width={300}
         height={200}
         className="w-full rounded-xl"

@@ -14,7 +14,7 @@ function LicenceServiceCard({
         <div className="p-2 rounded-md bg-primary backdrop-blur-md group-hover:scale-105 transition-transform duration-200">
           <Image
             src={licenceService.icon}
-            alt="cartype"
+            alt={`Champion Driving School - ${licenceService.title} license training icon`}
             width={30}
             height={30}
             className="text-white"
