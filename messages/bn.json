@@ -2,5 +2,92 @@
   "landingPage": {
     "title": "হ্যালো ওয়ার্ল্ড!",
     "about": "পরিচিতি পৃষ্ঠায় যান"
+  },
+  "home": {
+    "title": "নিপুণতার সাথে রাস্তায় দক্ষ হন",
+    "title_confidence": "আত্মবিশ্বাস",
+    "description": "আপনার গতির সঙ্গে মানানসই পেশাদার ড্রাইভিং প্রশিক্ষণ। নতুন চালক থেকে শুরু করে উন্নত দক্ষতা পর্যন্ত – আমরা আপনাকে নিরাপদে এবং কার্যকরভাবে রাস্তায় প্রস্তুত করব।",
+    "trusted_by_student": "১০০০+ শিক্ষার্থীর আস্থাভাজন",
+    "book_your_first_lesson": "আপনার প্রথম ক্লাস বুক করুন",
+    "contact_us": "যোগাযোগ করুন",
+    "licensed_and_insured": "লাইসেন্সপ্রাপ্ত ও বীমাকৃত",
+    "fully_certified_instructors": "সম্পূর্ণ প্রশিক্ষিত ইন্সট্রাক্টর",
+    "flexible_hours": "নমনীয় সময়সূচী",
+    "week": "সপ্তাহে ৭ দিন",
+    "pass_rate": "পাসের হার"
+  },
+  "about": {
+    "title": "কেন চ্যাম্পিয়ন ড্রাইভিং স্কুল বেছে নেবেন?",
+    "description": "দশ বছরেরও বেশি অভিজ্ঞতা নিয়ে, আমরা হাজার হাজার শিক্ষার্থীকে আত্মবিশ্বাসী ও নিরাপদ চালক হতে সাহায্য করেছি। আমাদের বিস্তৃত প্রশিক্ষণ পদ্ধতিতে আধুনিক শিক্ষাদান কৌশল ও ব্যক্তিগত মনোযোগের সংমিশ্রণ রয়েছে।",
+    "safety_first": "নিরাপত্তা সর্বাগ্রে",
+    "safety_first_description": "আধুনিক নিরাপত্তা বৈশিষ্ট্যযুক্ত যানবাহন এবং সম্পূর্ণ বীমা কভারেজ — মানসিক শান্তির জন্য।",
+    "expert_instructors": "দক্ষ প্রশিক্ষকগণ",
+    "expert_instructors_description": "সার্টিফায়েড পেশাদার যারা বহু বছরের অভিজ্ঞতা ও নিরাপদ ড্রাইভিংয়ের অভ্যাস শেখানোর প্রতি অঙ্গীকারবদ্ধ।",
+    "flexible_schedule": "নমনীয় সময়সূচী",
+    "flexible_schedule_description": "আমাদের সহজ অনলাইন শিডিউলিং সিস্টেম এবং নমনীয় সময়ের মাধ্যমে আপনার সুবিধামতো ক্লাস বুক করুন।"
+  },
+  "branch": {
+    "locations": "আমাদের অবস্থানসমূহ",
+    "location_descriptions": "আপনাকে আরও ভালোভাবে পরিষেবা দেওয়ার জন্য সুবিধাজনক অবস্থানে"
+  },
+  "course": {
+    "title": "আমরা যে অতিরিক্ত পরিষেবাগুলি প্রদান করি",
+    "descriptions": "ড্রাইভিং প্রশিক্ষণের পাশাপাশি, আমরা আপনার সমস্ত পরিবহন চাহিদা পূরণের জন্য সম্পূর্ণ যানবাহন ও লাইসেন্স পরিষেবা প্রদান করি।",
+    "driving_license_services": "ড্রাইভিং লাইসেন্স পরিষেবা",
+    "additional_services": "অতিরিক্ত পরিষেবা",
+    "our_courses": "আমাদের কোর্সসমূহ",
+    "courses_descriptions": "আপনার প্রয়োজন অনুযায়ী উপযুক্ত কোর্স নির্বাচন করুন",
+    "enroll_now": "এখনই ভর্তি হন",
+    "most_popular": "সবচেয়ে জনপ্রিয়",
+    "offers": "অফারসমূহ",
+    "title_motorcycle_without_gear": "গিয়ারবিহীন মোটরসাইকেল",
+    "description_motorcycle_without_gear": "নন-ট্রান্সপোর্ট মোটরসাইকেল লাইসেন্স",
+
+    "title_motorcycle_with_gear": "গিয়ারযুক্ত মোটরসাইকেল",
+    "description_motorcycle_with_gear": "নন-ট্রান্সপোর্ট গিয়ারযুক্ত মোটরসাইকেল লাইসেন্স",
+
+    "title_light_motor_vehicle": "হালকা মোটরযান",
+    "description_light_motor_vehicle": "স্ট্যান্ডার্ড গাড়ি চালনার লাইসেন্স",
+
+    "title_non_transport": "৩ চাকার নন-ট্রান্সপোর্ট",
+    "description_non_transport": "অটো-রিকশা ও অনুরূপ যানবাহন",
+
+    "title_tractor_non_transport": "ট্রাক্টর (নন-ট্রান্সপোর্ট)",
+    "description_tractor_license": "কৃষিকাজে ব্যবহৃত ট্রাক্টরের লাইসেন্স",
+    "title_vehicle_ownership_change": "যানবাহনের মালিকানা পরিবর্তন",
+    "description_vehicle_ownership_change": "সম্পূর্ণ ডকুমেন্টেশন এবং আইনি সহায়তা",
+
+    "title_police_challan_assistance": "পুলিশ চালান সহায়তা",
+    "description_police_challan_assistance": "ট্রাফিক লঙ্ঘন নিষ্পত্তি ও পেমেন্ট সহায়তা",
+
+    "title_vehicle_insurance_services": "যানবাহন বীমা পরিষেবা",
+    "description_vehicle_insurance_services": "সম্পূর্ণ বীমা পরিকল্পনা এবং ক্লেইম সহায়তা"
+  },
+  "instructors": {
+    "title": "আমাদের দক্ষ প্রশিক্ষকদের সঙ্গে পরিচিত হোন",
+    "description": "বহু বছরের অভিজ্ঞতা ও হাজারো সফল শিক্ষার্থীর সঙ্গে কাজ করা সার্টিফায়েড পেশাদারদের থেকে শিখুন।"
+  },
+  "gallery": {
+    "title": "আমাদের গ্যালারি",
+    "descriptions": "আমাদের আধুনিক সুবিধা, পেশাদার যানবাহন এবং শিক্ষার্থীদের কার্যক্রমের এক ঝলক দেখুন"
+  },
+  "contact": {
+    "title": "ড্রাইভিং শুরু করতে প্রস্তুত?",
+    "descriptions": "আজই আপনার প্রথম ক্লাস বুক করুন এবং স্বাধীনতার পথে প্রথম পদক্ষেপ নিন",
+    "book_your_lesson": "আপনার ক্লাস বুক করুন",
+    "label_first_name": "প্রথম নাম",
+    "placeholder_first_name": "প্রথম নাম লিখুন",
+    "label_last_name": "শেষ নাম",
+    "placeholder_last_name": "শেষ নাম লিখুন",
+    "label_email": "ইমেইল",
+    "placeholder_email": "আপনার ইমেইল লিখুন",
+    "label_phone": "ফোন",
+    "placeholder_phone": "ফোন নম্বর লিখুন",
+    "select_courses": "কোর্স নির্বাচন করুন",
+    "select_license_type": "লাইসেন্সের ধরন নির্বাচন করুন",
+    "label_message": "বার্তা",
+    "placeholder_message": "আপনার চাহিদা সম্পর্কে আমাদের জানান",
+    "msg_no_results_found": "কোনো ফলাফল পাওয়া যায়নি",
+    "button_book_now": "এখনই বুক করুন"
   }
 }

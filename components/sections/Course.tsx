@@ -2,15 +2,20 @@ import React from "react";
 import { courses } from "@/constants/data";
 import CourseCard from "@/components/core/CourseCard";
 import OtherServices from "@/components/core/OtherServices";
+import { useTranslations } from "next-intl";
 
 function Course() {
+  const t = useTranslations();
+
   return (
     <section id="courses" className="min-h-screen flex items-center bg-white">
       <div className="w-full max-w-7xl mx-auto px-6 xl:px-0 py-32">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-center text-4xl font-bold">Our Courses</h1>
+          <h1 className="text-center text-4xl font-bold">
+            {t("course.our_courses")}
+          </h1>
           <p className="text-center max-w-4xl text-lg text-muted-foreground">
-            Choose the perfect course for your needs
+            {t("course.courses_descriptions")}
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-20">
