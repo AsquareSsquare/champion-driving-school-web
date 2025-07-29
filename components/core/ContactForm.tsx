@@ -29,7 +29,11 @@ function ContactForm() {
   });
   return (
     <Form {...form}>
-      <form className="space-y-6" role="form" aria-label="Book your driving lesson">
+      <form
+        className="space-y-6"
+        role="form"
+        aria-label="Book your driving lesson"
+      >
         <h2 className="text-xl font-bold text-white">Book your lesson</h2>
         <div className="grid grid-cols-2 gap-6">
           <FormInputField
@@ -105,7 +109,7 @@ function ContactForm() {
         />
         <Button
           type="submit"
-          className="w-full bg-primary hover:bg-primary/90 text-white"
+          className="w-full"
           aria-label="Submit booking request"
         >
           Book Now
