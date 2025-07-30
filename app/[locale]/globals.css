@@ -147,6 +147,10 @@
   --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.25);
 }
 
+@utility shad-no-focus {
+  @apply outline-hidden! ring-offset-transparent! focus:ring-transparent! focus:ring-offset-0! focus-visible:outline-hidden! focus-visible:ring-0! focus-visible:ring-transparent! focus-visible:ring-offset-0!;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

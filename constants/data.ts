@@ -67,6 +67,21 @@ export const userRole = [
   },
 ];
 
+export const bookingStatus = [
+  {
+    label: "Pending",
+    value: "pending",
+  },
+  {
+    label: "Read",
+    value: "read",
+  },
+  {
+    label: "Replied",
+    value: "replied",
+  },
+];
+
 export const abouts: AboutCard[] = [
   {
     icon: Shield,

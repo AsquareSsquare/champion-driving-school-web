@@ -6,11 +6,10 @@ export const signInSchema = z.object({
 });
 
 export const contactSchema = z.object({
-  firstName: z.string().min(3),
-  lastName: z.string().min(3),
+  name: z.string().min(3),
   email: z.email(),
   phone: z.string().min(10),
-  course: z.string().min(3),
+  subject: z.string().min(3),
   message: z.string().min(3),
 });
 
