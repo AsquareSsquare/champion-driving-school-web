@@ -52,6 +52,10 @@ export const addLearnerSteps = [
   },
   {
     step: 2,
+    title: "License details",
+  },
+  {
+    step: 3,
     title: "Payment details",
   },
 ];
@@ -79,6 +83,21 @@ export const bookingStatus = [
   {
     label: "Replied",
     value: "replied",
+  },
+];
+
+export const genders = [
+  {
+    label: "Male",
+    value: "male",
+  },
+  {
+    label: "Female",
+    value: "female",
+  },
+  {
+    label: "Other",
+    value: "other",
   },
 ];
 

@@ -2,7 +2,6 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
 import { DASHBOARD_PAGE, SIGN_IN_PAGE } from "@/constants/data";
-import { getLocale } from "next-intl/server";
 import { getLoggedInUser } from "@/services/server-actions/userActions";
 
 const adminRouts = [
@@ -16,7 +15,7 @@ const intlMiddleware = createMiddleware(routing);
 export async function middleware(request: NextRequest) {
   const { nextUrl } = request;
   const intlResponse = intlMiddleware(request);
-  const locale = await getLocale();
+  const locale = nextUrl.pathname.split("/")[1];
 
   // Auth check
   if (nextUrl.pathname.startsWith(`/${locale}/${DASHBOARD_PAGE}`)) {

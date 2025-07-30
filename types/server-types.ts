@@ -19,3 +19,12 @@ export interface Contact {
   created_at: string;
   updated_at: string;
 }
+
+export interface Branch {
+  id: number;
+  name: string;
+  address: string;
+  contact_number: string;
+  created_at: string;
+  updated_at: string;
+}

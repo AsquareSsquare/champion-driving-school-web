@@ -13,12 +13,19 @@ export const contactEndpoints = {
   UPDATE_CONTACTS_API: `${baseUrl}/admin/contacts`,
 };
 
+export const branchEndpoints = {
+  CREATE_BRANCH_API: `${baseUrl}/protected/branches`,
+};
+
 export const openEndpoints = {
   SUBMIT_CONTACT_API: `${baseUrl}/contact`,
 };
 
 export const serverAPIs = {
   GET_USER_API: `${serverUrl}/protected/profile`,
+
+  // Branch
+  GET_ALL_BRANCHES_API: `${serverUrl}/protected/branches`,
 
   // ADMIN
   GET_ALL_CONTACTS_API: `${serverUrl}/admin/contacts`,

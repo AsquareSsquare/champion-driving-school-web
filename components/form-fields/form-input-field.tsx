@@ -32,6 +32,13 @@ function FormInputField<T extends FieldValues>({
   inputClassName,
 }: CustomInputProps<T>) {
   const [showPassword, setShowPassword] = useState(false);
+  const handleDigitsOnlyInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    onChange: (value: string) => void,
+  ) => {
+    const value = e.target.value.replace(/[^0-9]/g, "");
+    onChange(value);
+  };
   return (
     <FormField
       control={control}
@@ -52,6 +59,13 @@ function FormInputField<T extends FieldValues>({
                     : inputType || "text"
                 }
                 {...field}
+                onChange={(e) => {
+                  if (inputType === "number") {
+                    handleDigitsOnlyInput(e, field.onChange);
+                  } else {
+                    field.onChange(e);
+                  }
+                }}
               />
             </FormControl>
             <FormMessage />
