@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -7,21 +8,41 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormInputField from "@/components/form-fields/form-input-field";
 import FormTextareaField from "@/components/form-fields/form-textarea-field";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { createBranch } from "@/services/client-actions/branceActions";
+import { Loader } from "lucide-react";
 
 function AddBranchForm() {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof addBranchSchema>>({
     resolver: zodResolver(addBranchSchema),
     defaultValues: {
       name: "",
       address: "",
       contact_number: "",
-      timing: "",
     },
   });
 
+  const onSuccess = () => {
+    toast.success("Branch created successfully.");
+    form.reset();
+  };
+
+  const onFailure = () => {
+    toast.error("Error creating branch");
+  };
+
+  const submitHandler = async (branchData: z.infer<typeof addBranchSchema>) => {
+    try {
+      await createBranch(branchData, setLoading, onSuccess, onFailure);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(submitHandler)}>
         <div className="flex flex-col gap-6">
           <FormInputField
             control={form.control}
@@ -42,15 +63,12 @@ function AddBranchForm() {
             name="contact_number"
             label="Branch contact number"
             placeholder="Enter branch contact number"
-          />
-          <FormInputField
-            control={form.control}
-            name="timing"
-            label="Branch open times"
-            placeholder="Enter branch open times"
+            inputType="tel"
           />
 
-          <Button type="submit">Add branch</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? <Loader className="animate-spin" /> : "Add branch"}
+          </Button>
         </div>
       </form>
     </Form>

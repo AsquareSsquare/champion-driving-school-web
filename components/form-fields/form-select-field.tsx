@@ -25,7 +25,7 @@ interface CustomSelectProps<T extends FieldValues> {
   control: Control<T>;
   name: FieldPath<T>;
   items: CustomSelectItemType[];
-  label: string;
+  label?: string;
   placeholder?: string;
   labelClassName?: string;
   inputClassName?: string;

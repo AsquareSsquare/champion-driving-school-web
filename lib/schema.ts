@@ -6,37 +6,44 @@ export const signInSchema = z.object({
 });
 
 export const contactSchema = z.object({
-  firstName: z.string().min(3),
-  lastName: z.string().min(3),
+  name: z.string().min(3),
   email: z.email(),
   phone: z.string().min(10),
-  course: z.string().min(3),
+  subject: z.string().min(3),
   message: z.string().min(3),
 });
 
-export const addLearnerSchema = z.object({
+export const learnerDetailsSchema = z.object({
+  branchId: z.string(),
   name: z.string().min(3),
   address: z.string().min(3),
   dateOfBirth: z.date(),
   blood_group: z.string().min(2),
-  gender: z.string().min(3),
+  gender: z.enum(["male", "female", "other"]),
   phone: z.string().min(10),
-  aadhar: z.string().min(12),
-  voter: z.string().min(10),
-  branch_id: z.number(),
-  learner_application_no: z.string(),
-  learner_license_no: z.string(),
-  dl_application_no: z.string(),
-  driving_license_no: z.string().optional(),
-  driving_license_renewal: z.string(),
-  remarks: z.string().optional(),
+  id_card: z.string().min(12),
+  total_fees: z.string(),
+});
+
+export const licenseDetailsSchema = z.object({
+  learner_app_no: z.string().min(3),
+  learner_license_no: z.string().min(3),
+  dl_app_no: z.string().min(3),
+  driving_license_no: z.string().min(3),
+  notes: z.string(),
+});
+
+export const paymentDetailsSchema = z.object({
+  amount_paid: z.string(),
+  payment_date: z.date(),
+  payment_method: z.string().min(3),
+  notes: z.string(),
 });
 
 export const addBranchSchema = z.object({
   name: z.string().min(3),
   address: z.string().min(3),
   contact_number: z.string().min(10),
-  timing: z.string().min(3),
 });
 
 export const addStuffSchema = z.object({

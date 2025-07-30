@@ -1,6 +1,5 @@
 "use client";
-import { Label } from "@/components/ui/label";
-import { courseSelectItems } from "@/constants/data";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -9,52 +8,58 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import FormInputField from "@/components/form-fields/form-input-field";
 import FormTextareaField from "@/components/form-fields/form-textarea-field";
-import MultipleSelector, {
-  MultiSelectOption,
-} from "@/components/ui/multiselect";
-import { useState } from "react";
+import { submitContact } from "@/services/client-actions/contactActions";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 function ContactForm() {
-  const [courses, setCourses] = useState<MultiSelectOption[]>([]);
+  // const [courses, setCourses] = useState<MultiSelectOption[]>([]);
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       phone: "",
-      course: "",
+      subject: "",
       message: "",
     },
   });
+
+  const handleOnSuccess = () => {
+    toast.success("Your message has been submitted.");
+    form.reset();
+  };
+
+  const handleOnFailure = () => {
+    toast.error("Could not submit your message.");
+  };
+
+  const submitHandler = async (data: z.infer<typeof contactSchema>) => {
+    try {
+      await submitContact(data, setLoading, handleOnSuccess, handleOnFailure);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Form {...form}>
       <form
         className="space-y-6"
         role="form"
         aria-label="Book your driving lesson"
+        onSubmit={form.handleSubmit(submitHandler)}
       >
         <h2 className="text-xl font-bold text-white">Book your lesson</h2>
-        <div className="grid grid-cols-2 gap-6">
-          <FormInputField
-            control={form.control}
-            name="firstName"
-            label="First Name"
-            inputType="text"
-            placeholder="Enter First Name"
-            labelClassName="text-white"
-            inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
-          />
-          <FormInputField
-            control={form.control}
-            name="lastName"
-            label="Last Name"
-            inputType="text"
-            placeholder="Enter Last Name"
-            labelClassName="text-white"
-            inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
-          />
-        </div>
+        <FormInputField
+          control={form.control}
+          name="name"
+          label="Full Name"
+          inputType="text"
+          placeholder="Enter full Name"
+          labelClassName="text-white"
+          inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+        />
         <FormInputField
           control={form.control}
           name="email"
@@ -73,32 +78,41 @@ function ContactForm() {
           labelClassName="text-white"
           inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
         />
-        <div className="space-y-3">
-          <Label className="text-white">Select courses</Label>
-          <MultipleSelector
-            commandProps={{
-              label: "Select license type",
-            }}
-            inputProps={{
-              className: "text-white",
-              "aria-label": "Select driving course type",
-            }}
-            className="border-slate-600/50 bg-slate-700/50"
-            badgeClassName="bg-primary text-white border-transparent hover:bg-primary/90 transition-opacity duration-300"
-            crossIconClassName="text-gray-200"
-            selectListClassName="bg-slate-700"
-            itemClassName="text-white data-[selected=true]:bg-slate-600 data-[selected=true]:text-gray-200"
-            value={courses}
-            onChange={(value) => setCourses(value)}
-            defaultOptions={courseSelectItems}
-            placeholder="Select license type"
-            hideClearAllButton
-            hidePlaceholderWhenSelected
-            emptyIndicator={
-              <p className="text-center text-sm text-white">No results found</p>
-            }
-          />
-        </div>
+        <FormInputField
+          control={form.control}
+          name="subject"
+          label="Subject"
+          placeholder="Enter Subject"
+          inputType="text"
+          labelClassName="text-white"
+          inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
+        />
+        {/*<div className="space-y-3">*/}
+        {/*  <Label className="text-white">Select courses</Label>*/}
+        {/*  <MultipleSelector*/}
+        {/*    commandProps={{*/}
+        {/*      label: "Select license type",*/}
+        {/*    }}*/}
+        {/*    inputProps={{*/}
+        {/*      className: "text-white",*/}
+        {/*      "aria-label": "Select driving course type",*/}
+        {/*    }}*/}
+        {/*    className="border-slate-600/50 bg-slate-700/50"*/}
+        {/*    badgeClassName="bg-primary text-white border-transparent hover:bg-primary/90 transition-opacity duration-300"*/}
+        {/*    crossIconClassName="text-gray-200"*/}
+        {/*    selectListClassName="bg-slate-700"*/}
+        {/*    itemClassName="text-white data-[selected=true]:bg-slate-600 data-[selected=true]:text-gray-200"*/}
+        {/*    value={courses}*/}
+        {/*    onChange={(value) => setCourses(value)}*/}
+        {/*    defaultOptions={courseSelectItems}*/}
+        {/*    placeholder="Select license type"*/}
+        {/*    hideClearAllButton*/}
+        {/*    hidePlaceholderWhenSelected*/}
+        {/*    emptyIndicator={*/}
+        {/*      <p className="text-center text-sm text-white">No results found</p>*/}
+        {/*    }*/}
+        {/*  />*/}
+        {/*</div>*/}
         <FormTextareaField
           control={form.control}
           name="message"
@@ -111,8 +125,9 @@ function ContactForm() {
           type="submit"
           className="w-full"
           aria-label="Submit booking request"
+          disabled={loading}
         >
-          Book Now
+          {loading ? <Loader className="animate-spin" /> : "Book Now"}
         </Button>
       </form>
     </Form>

@@ -52,6 +52,10 @@ export const addLearnerSteps = [
   },
   {
     step: 2,
+    title: "License details",
+  },
+  {
+    step: 3,
     title: "Payment details",
   },
 ];
@@ -64,6 +68,36 @@ export const userRole = [
   {
     label: "Admin",
     value: "admin",
+  },
+];
+
+export const bookingStatus = [
+  {
+    label: "Pending",
+    value: "pending",
+  },
+  {
+    label: "Read",
+    value: "read",
+  },
+  {
+    label: "Replied",
+    value: "replied",
+  },
+];
+
+export const genders = [
+  {
+    label: "Male",
+    value: "male",
+  },
+  {
+    label: "Female",
+    value: "female",
+  },
+  {
+    label: "Other",
+    value: "other",
   },
 ];
 
