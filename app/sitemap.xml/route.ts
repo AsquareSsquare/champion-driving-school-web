@@ -6,39 +6,37 @@
  */
 
 export async function GET() {
-  const baseUrl = 'https://www.championdrivingschool.in';
-
-  const urls = [
-    { path: '', priority: '1.0', changefreq: 'daily' },
-    { path: '/en', priority: '0.9', changefreq: 'weekly' },
-    { path: '/bn', priority: '0.9', changefreq: 'weekly' },
-  ];
-
-  const now = new Date().toISOString();
-
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-          xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    const baseUrl = 'https://www.championdrivingschool.in';
+  
+    const urls = [
+      '',         // homepage
+      '/en',      // English version
+      '/bn',      // Bengali version
+      // Remove fragment URLs like '/#about' — they are not allowed in sitemaps
+    ];
+  
+    const now = new Date().toISOString();
+  
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   ${urls
     .map(
-      (url) => `
+      (path) => `
     <url>
-      <loc>${baseUrl}${url.path}</loc>
+      <loc>${baseUrl}${path}</loc>
       <lastmod>${now}</lastmod>
-      <changefreq>${url.changefreq}</changefreq>
-      <priority>${url.priority}</priority>
-      <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en" />
-      <xhtml:link rel="alternate" hreflang="bn" href="${baseUrl}/bn" />
-      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}" />
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
     </url>`
     )
     .join('')}
   </urlset>`;
-
-  return new Response(sitemap, {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  });
-}
+  
+    return new Response(sitemap, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml',
+      },
+    });
+  }
+  
