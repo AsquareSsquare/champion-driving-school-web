@@ -38,6 +38,7 @@ function LicenseDetailsForm({
         return;
       }
       toast.success(result.message);
+      form.reset();
       setStep(3);
     } catch (error) {
       console.log(error);
@@ -45,6 +46,7 @@ function LicenseDetailsForm({
   };
 
   const handleSkip = () => {
+    form.reset();
     setStep(3);
   };
   return (

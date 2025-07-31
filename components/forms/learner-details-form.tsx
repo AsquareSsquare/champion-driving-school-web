@@ -78,6 +78,7 @@ function LearnerDetailsForm({
         return;
       }
       toast.success(result.message);
+      form.reset();
       setLearnerId(result.learnerId);
       setStep(2);
     } catch (error) {

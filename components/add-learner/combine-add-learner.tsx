@@ -14,7 +14,7 @@ import LicenseDetailsForm from "@/components/forms/license-details-form";
 import PaymentDetailsForm from "@/components/forms/payment-details-form";
 
 function CombineAddLearner({ branches }: { branches: Branch[] }) {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [learnerId, setLearnerId] = useState<number | undefined>(1);
   return (
     <div className="w-full space-y-10">

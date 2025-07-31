@@ -39,6 +39,7 @@ function PaymentDetailsForm({
         return;
       }
       toast.success(result.message);
+      form.reset();
       setStep(1);
     } catch (error) {
       console.log(error);
@@ -46,6 +47,7 @@ function PaymentDetailsForm({
   };
 
   const handleSkip = () => {
+    form.reset();
     setStep(1);
   };
   return (
