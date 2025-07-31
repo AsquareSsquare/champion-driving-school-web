@@ -1,19 +1,19 @@
 import React from "react";
 import { getAllBranches } from "@/services/server-actions/branchActions";
-import CombineAddLearner from "@/components/add-learner/combine-add-learner";
+import AddStuffForm from "@/components/forms/add-stuff-form";
 
-async function AddLearner() {
+async function AddStaff() {
   const { branches } = await getAllBranches();
   return (
     <>
       {branches.length > 0 ? (
         <div className="w-full max-w-xl mx-auto px-6">
-          <CombineAddLearner branches={branches} />
+          <AddStuffForm branches={branches} />
         </div>
       ) : (
         <div className="h-[calc(100vh-8rem)] flex items-center justify-center">
           <p className="text-xl font-bold">
-            Please add a branch before adding learner.
+            Please add a branch before adding staff.
           </p>
         </div>
       )}
@@ -21,4 +21,4 @@ async function AddLearner() {
   );
 }
 
-export default AddLearner;
+export default AddStaff;

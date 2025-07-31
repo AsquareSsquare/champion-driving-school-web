@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { addStuffSchema } from "@/lib/schema";
@@ -8,8 +9,14 @@ import FormInputField from "@/components/form-fields/form-input-field";
 import FormSelectField from "@/components/form-fields/form-select-field";
 import { userRole } from "@/constants/data";
 import { Button } from "@/components/ui/button";
+import { Branch } from "@/types/server-types";
+import { getBranchSelectItems } from "@/lib/utils";
+import { createStaff } from "@/services/client-actions/staffActions";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
-function AddStuffForm() {
+function AddStuffForm({ branches }: { branches: Branch[] }) {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof addStuffSchema>>({
     resolver: zodResolver(addStuffSchema),
     defaultValues: {
@@ -17,11 +24,25 @@ function AddStuffForm() {
       username: "",
       password: "",
       role: "staff",
+      branch_id: "",
     },
   });
 
-  const submitHandler = (data: z.infer<typeof addStuffSchema>) => {
-    console.log(data);
+  const handleOnSuccess = () => {
+    toast.success("Staff added successfully.");
+    form.reset();
+  };
+
+  const handleOnFailure = () => {
+    toast.error("Could not add stuff.");
+  };
+
+  const submitHandler = async (data: z.infer<typeof addStuffSchema>) => {
+    try {
+      await createStaff(data, setLoading, handleOnSuccess, handleOnFailure);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Form {...form}>
@@ -56,7 +77,17 @@ function AddStuffForm() {
             placeholder="Select user role"
           />
 
-          <Button type="submit">Add staff</Button>
+          <FormSelectField
+            control={form.control}
+            name="branch_id"
+            items={getBranchSelectItems(branches)}
+            placeholder="Select a branch"
+            label="Select branch"
+          />
+
+          <Button type="submit">
+            {loading ? <Loader className="animate-spin" /> : "Add staff"}
+          </Button>
         </div>
       </form>
     </Form>

@@ -30,14 +30,14 @@ export const licenseDetailsSchema = z.object({
   learner_license_no: z.string().min(3),
   dl_app_no: z.string().min(3),
   driving_license_no: z.string().min(3),
-  notes: z.string(),
+  notes: z.string().optional(),
 });
 
 export const paymentDetailsSchema = z.object({
   amount_paid: z.string(),
   payment_date: z.date(),
   payment_method: z.string().min(3),
-  notes: z.string(),
+  notes: z.string().optional(),
 });
 
 export const addBranchSchema = z.object({
@@ -51,4 +51,5 @@ export const addStuffSchema = z.object({
   password: z.string().min(8),
   name: z.string().min(3),
   role: z.enum(["admin", "staff"]),
+  branch_id: z.string().optional(),
 });

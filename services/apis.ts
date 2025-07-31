@@ -17,6 +17,10 @@ export const branchEndpoints = {
   CREATE_BRANCH_API: `${baseUrl}/protected/branches`,
 };
 
+export const staffEndpoints = {
+  ADD_STAFF_API: `${baseUrl}/auth/signup`,
+};
+
 export const openEndpoints = {
   SUBMIT_CONTACT_API: `${baseUrl}/contact`,
 };
