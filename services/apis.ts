@@ -13,6 +13,18 @@ export const contactEndpoints = {
   UPDATE_CONTACTS_API: `${baseUrl}/admin/contacts`,
 };
 
+export const learnerEndpoints = {
+  SUBMIT_LEARNER_DETAILS_API: `${baseUrl}/protected/students`,
+};
+
+export const licenseEndpoints = {
+  SUBMIT_LICENSE_DETAILS_API: `${baseUrl}/protected/license-documents`,
+};
+
+export const paymentEndpoints = {
+  SUBMIT_PAYMENT_DETAILS_API: `${baseUrl}/protected/payments`,
+};
+
 export const branchEndpoints = {
   CREATE_BRANCH_API: `${baseUrl}/protected/branches`,
 };

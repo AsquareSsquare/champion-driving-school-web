@@ -101,6 +101,17 @@ export const genders = [
   },
 ];
 
+export const paymentTypes = [
+  {
+    label: "Cash",
+    value: "cash",
+  },
+  {
+    label: "UPI",
+    value: "upi",
+  },
+];
+
 export const abouts: AboutCard[] = [
   {
     icon: Shield,
@@ -177,22 +188,34 @@ export const courses: Course[] = [
   },
 ];
 
-export const courseSelectItems: MultiSelectOption[] = [
+export const courseSelectItems: { id: string; label: string }[] = [
   {
-    label: "Car Driving Course",
-    value: "LMV",
+    label: "MCWG",
+    id: "MCWG",
   },
   {
-    label: "Car + Bike Driving Course",
-    value: "LMV+MCWG",
+    label: "MWNG",
+    id: "MWNG",
   },
   {
-    label: "Motorcycle With Gear",
-    value: "MCWG",
+    label: "LMV",
+    id: "LMV",
   },
   {
-    label: "Motorcycle Without Gear",
-    value: "MCWOG",
+    label: "LMV+MCWG",
+    id: "LMV+MCWG",
+  },
+  {
+    label: "COMMERCIAL",
+    id: "COMMERCIAL",
+  },
+  {
+    label: "DLR",
+    id: "DLR",
+  },
+  {
+    label: "ONLY DRIVING",
+    id: "ONLY DRIVING",
   },
 ];
 

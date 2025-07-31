@@ -29,6 +29,7 @@ interface CustomSelectProps<T extends FieldValues> {
   placeholder?: string;
   labelClassName?: string;
   inputClassName?: string;
+  disabled?: boolean;
 }
 
 function FormSelectField<T extends FieldValues>({
@@ -39,6 +40,7 @@ function FormSelectField<T extends FieldValues>({
   placeholder,
   labelClassName,
   inputClassName,
+  disabled,
 }: CustomSelectProps<T>) {
   return (
     <FormField
@@ -53,7 +55,10 @@ function FormSelectField<T extends FieldValues>({
             onValueChange={field.onChange}
           >
             <FormControl>
-              <SelectTrigger className={cn("w-full", inputClassName)}>
+              <SelectTrigger
+                className={cn("w-full", inputClassName)}
+                disabled={disabled}
+              >
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>

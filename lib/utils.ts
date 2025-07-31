@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Branch } from "@/types/server-types";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -22,4 +23,8 @@ export function getBranchSelectItems(branches: Branch[]) {
     label: branch.name,
     value: branch.id.toString(),
   }));
+}
+
+export function formatDateToISO(date: Date): string {
+  return date.toISOString().replace(/\.\d{3}Z$/, "Z");
 }

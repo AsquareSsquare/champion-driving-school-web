@@ -14,7 +14,8 @@ import LicenseDetailsForm from "@/components/forms/license-details-form";
 import PaymentDetailsForm from "@/components/forms/payment-details-form";
 
 function CombineAddLearner({ branches }: { branches: Branch[] }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
+  const [learnerId, setLearnerId] = useState<number | undefined>(1);
   return (
     <div className="w-full space-y-10">
       <Stepper value={step} className="items-start gap-4">
@@ -32,13 +33,21 @@ function CombineAddLearner({ branches }: { branches: Branch[] }) {
         ))}
       </Stepper>
 
-      {step === 0 && (
-        <LearnerDetailsForm branches={branches} setStep={() => setStep(1)} />
+      {step === 1 && (
+        <LearnerDetailsForm
+          branches={branches}
+          setStep={setStep}
+          setLearnerId={setLearnerId}
+        />
       )}
 
-      {step === 1 && <LicenseDetailsForm />}
+      {step === 2 && learnerId && (
+        <LicenseDetailsForm setStep={setStep} learnerId={learnerId} />
+      )}
 
-      {step === 2 && <PaymentDetailsForm />}
+      {step === 3 && learnerId && (
+        <PaymentDetailsForm setStep={setStep} learnerId={learnerId} />
+      )}
     </div>
   );
 }

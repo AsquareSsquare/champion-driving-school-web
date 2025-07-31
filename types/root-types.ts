@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { z } from "zod";
 
 export interface Language {
   label: string;
@@ -62,4 +63,34 @@ export interface SideBarMenu {
   title: string;
   url: string;
   icon: LucideIcon;
+}
+
+export interface LearnerDetailsRequest {
+  name: string;
+  phone: string;
+  address: string;
+  date_of_birth: string;
+  blood_group: string;
+  gender: string;
+  id_card: string;
+  license_types: string[];
+  total_fees: number;
+  branch_id: number;
+}
+
+export interface LicenseDetailsRequest {
+  student_id: number;
+  learner_app_no?: string;
+  learner_license_no?: string;
+  dl_app_no?: string;
+  driving_license_no?: string;
+  notes?: string;
+}
+
+export interface PaymentDetailsRequest {
+  student_id: number;
+  amount_paid: number;
+  payment_date: string;
+  payment_method: string;
+  notes?: string;
 }

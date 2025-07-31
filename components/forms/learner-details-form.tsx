@@ -1,5 +1,6 @@
 "use client";
-import { genders } from "@/constants/data";
+import { useState } from "react";
+import { courseSelectItems, genders } from "@/constants/data";
 import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -12,14 +13,33 @@ import { Button } from "@/components/ui/button";
 import { Branch } from "@/types/server-types";
 import FormSelectField from "@/components/form-fields/form-select-field";
 import { getBranchSelectItems } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
+import {
+  Tags,
+  TagsContent,
+  TagsEmpty,
+  TagsGroup,
+  TagsInput,
+  TagsItem,
+  TagsList,
+  TagsTrigger,
+  TagsValue,
+} from "@/components/ui/kibo-ui/tags";
+import { CheckIcon, Loader } from "lucide-react";
+import { submitLearnerDetails } from "@/services/client-actions/learnerActions";
+import { toast } from "sonner";
 
 function LearnerDetailsForm({
   branches,
   setStep,
+  setLearnerId,
 }: {
   branches: Branch[];
-  setStep: () => void;
+  setStep: (step: number) => void;
+  setLearnerId: (learnerId: number) => void;
 }) {
+  const [courses, setCourses] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof learnerDetailsSchema>>({
     resolver: zodResolver(learnerDetailsSchema),
     defaultValues: {
@@ -34,9 +54,35 @@ function LearnerDetailsForm({
       total_fees: "",
     },
   });
-  const submitHandler = (data: z.infer<typeof learnerDetailsSchema>) => {
-    console.log(data);
-    setStep();
+
+  const handleRemove = (value: string) => {
+    if (!courses.includes(value)) {
+      return;
+    }
+    setCourses((prev) => prev.filter((v) => v !== value));
+  };
+
+  const handleSelect = (value: string) => {
+    if (courses.includes(value)) {
+      handleRemove(value);
+      return;
+    }
+    setCourses((prev) => [...prev, value]);
+  };
+
+  const submitHandler = async (data: z.infer<typeof learnerDetailsSchema>) => {
+    try {
+      const result = await submitLearnerDetails(data, courses, setLoading);
+      if (!result.success) {
+        toast.error(result.message);
+        return;
+      }
+      toast.success(result.message);
+      setLearnerId(result.learnerId);
+      setStep(2);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Form {...form}>
@@ -60,7 +106,7 @@ function LearnerDetailsForm({
             control={form.control}
             name="gender"
             items={genders}
-            placeholder="Select student gender"
+            placeholder="Select learner gender"
             label="Select gender"
           />
           <FormTextareaField
@@ -92,11 +138,45 @@ function LearnerDetailsForm({
           <FormInputField
             control={form.control}
             name="id_card"
-            label="Learner ID card"
-            placeholder="Enter learner ID card number"
+            label="Learner aadhar card number"
+            placeholder="Enter learner aadhar number"
           />
 
-          {/*TODO: License type multiselect*/}
+          <div className="space-y-3">
+            <Label>Select courses</Label>
+            <Tags className="">
+              <TagsTrigger>
+                {courses.map((tag) => (
+                  <TagsValue key={tag} onRemove={() => handleRemove(tag)}>
+                    {courseSelectItems.find((t) => t.id === tag)?.label}
+                  </TagsValue>
+                ))}
+              </TagsTrigger>
+              <TagsContent>
+                <TagsInput placeholder="Search tag..." />
+                <TagsList>
+                  <TagsEmpty />
+                  <TagsGroup>
+                    {courseSelectItems.map((tag) => (
+                      <TagsItem
+                        key={tag.id}
+                        onSelect={handleSelect}
+                        value={tag.id}
+                      >
+                        {tag.label}
+                        {courses.includes(tag.id) && (
+                          <CheckIcon
+                            className="text-muted-foreground"
+                            size={14}
+                          />
+                        )}
+                      </TagsItem>
+                    ))}
+                  </TagsGroup>
+                </TagsList>
+              </TagsContent>
+            </Tags>
+          </div>
           <FormInputField
             control={form.control}
             name="total_fees"
@@ -105,7 +185,9 @@ function LearnerDetailsForm({
             inputType="number"
           />
 
-          <Button type="submit">Next</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? <Loader className="animate-spin" /> : "Submit"}
+          </Button>
         </div>
       </form>
     </Form>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { licenseDetailsSchema } from "@/lib/schema";
@@ -7,8 +7,18 @@ import { Form } from "@/components/ui/form";
 import FormInputField from "@/components/form-fields/form-input-field";
 import { Button } from "@/components/ui/button";
 import FormTextareaField from "@/components/form-fields/form-textarea-field";
+import { submitLicenseDetails } from "@/services/client-actions/licenseActions";
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
 
-function LicenseDetailsForm() {
+function LicenseDetailsForm({
+  learnerId,
+  setStep,
+}: {
+  learnerId: number;
+  setStep: (step: number) => void;
+}) {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof licenseDetailsSchema>>({
     resolver: zodResolver(licenseDetailsSchema),
     defaultValues: {
@@ -19,9 +29,27 @@ function LicenseDetailsForm() {
       notes: "",
     },
   });
+
+  const submitHandler = async (data: z.infer<typeof licenseDetailsSchema>) => {
+    try {
+      const result = await submitLicenseDetails(data, learnerId, setLoading);
+      if (!result.success) {
+        toast.error(result.message);
+        return;
+      }
+      toast.success(result.message);
+      setStep(3);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSkip = () => {
+    setStep(3);
+  };
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(submitHandler)}>
         <div className="flex flex-col gap-6">
           <FormInputField
             control={form.control}
@@ -57,7 +85,19 @@ function LicenseDetailsForm() {
             label="Remarks"
             placeholder="Enter remarks notes"
           />
-          <Button type="submit">Next</Button>
+          <div className="flex flex-col gap-6">
+            <Button type="submit" disabled={loading}>
+              {loading ? <Loader className="animate-spin" /> : "Submit"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              disabled={loading}
+              onClick={handleSkip}
+            >
+              Skip
+            </Button>
+          </div>
         </div>
       </form>
     </Form>

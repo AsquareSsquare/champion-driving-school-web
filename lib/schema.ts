@@ -26,10 +26,10 @@ export const learnerDetailsSchema = z.object({
 });
 
 export const licenseDetailsSchema = z.object({
-  learner_app_no: z.string().min(3),
-  learner_license_no: z.string().min(3),
-  dl_app_no: z.string().min(3),
-  driving_license_no: z.string().min(3),
+  learner_app_no: z.string().optional(),
+  learner_license_no: z.string().optional(),
+  dl_app_no: z.string().optional(),
+  driving_license_no: z.string().optional(),
   notes: z.string().optional(),
 });
 

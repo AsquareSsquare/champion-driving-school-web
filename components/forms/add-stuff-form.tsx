@@ -83,6 +83,7 @@ function AddStuffForm({ branches }: { branches: Branch[] }) {
             items={getBranchSelectItems(branches)}
             placeholder="Select a branch"
             label="Select branch"
+            disabled={form.watch("role") === "admin"}
           />
 
           <Button type="submit">
