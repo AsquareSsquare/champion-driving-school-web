@@ -2,5 +2,86 @@
   "landingPage": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "home": {
+    "title": "Master the Road with",
+    "title_confidence": "Confidence",
+    "description": "Professional driving lessons tailored to your pace. From first-time drivers to advanced skills - we'll get you road-ready safely and efficiently.",
+    "trusted_by_student": "Trusted by 1000+ students",
+    "book_your_first_lesson": "Book your first lesson",
+    "contact_us": "Contact us",
+    "licensed_and_insured": "Licensed & Insured",
+    "fully_certified_instructors": "Fully certified instructors",
+    "flexible_hours": "Flexible Hours",
+    "week": "7 Days a week",
+    "pass_rate": "Pass rate"
+  },
+  "about": {
+    "title": "Why Choose Champion Driving School?",
+    "description": "With over a decade of experience, we've helped thousands of students become confident, safe drivers. Our comprehensive approach combines modern teaching methods with personalized attention.",
+    "safety_first": "Safety First",
+    "safety_first_description": "Modern vehicles with advanced safety features and comprehensive insurance coverage for peace of mind.",
+    "expert_instructors": "Expert Instructors",
+    "expert_instructors_description": "Certified professionals with years of experience and a passion for teaching safe driving habits.",
+    "flexible_schedule": "Flexible Schedule",
+    "flexible_schedule_description": "Book lessons at your convenience with our easy online scheduling system and flexible timing."
+  },
+  "branch":{
+    "locations": "Our Locations",
+    "location_descriptions": "Conveniently located to serve you better"
+  },
+  "course": {
+    "title": "Other Services We Offer",
+    "descriptions": "Beyond driving lessons, we provide comprehensive vehicle and licensing services to meet all your transportation needs.",
+    "driving_license_services": "Driving License Services",
+    "additional_services": "Additional Services",
+    "our_courses": "Our Courses",
+    "courses_descriptions": "Choose the perfect course for your needs",
+    "enroll_now": "Enroll now",
+    "most_popular": "Most Popular",
+    "offers": "Offers",
+    "title_motorcycle_without_gear": "Motorcycle Without Gear",
+    "description_motorcycle_without_gear": "Non-Transport motorcycle license",
+    "title_motorcycle_with_gear": "Motorcycle With Gear",
+    "description_motorcycle_with_gear": "Non-Transport geared motorcycle license",
+    "title_light_motor_vehicle": "Light Motor Vehicle",
+    "description_light_motor_vehicle": "Standard car driving license",
+    "title_non_transport": "3 Wheeler Non-Transport",
+    "description_non_transport": "Auto-rickshaw and similar vehicles",
+    "title_tractor_non_transport": "Tractor Non-Transport",
+    "description_tractor_license": "Agricultural tractor license",
+    "title_vehicle_ownership_change": "Vehicle Ownership Change",
+    "description_vehicle_ownership_change": "Complete transfer documentation and legal assistance",
+    "title_police_challan_assistance": "Police Challan Assistance",
+    "description_police_challan_assistance": "Traffic violation resolution and payment support",
+    "title_vehicle_insurance_services": "Vehicle Insurance Services",
+    "description_vehicle_insurance_services": "Comprehensive insurance plans and claim assistance"
+  },
+  "instructors": {
+    "title": "Meet Our Expert Instructors",
+    "description": "Learn from certified professionals with years of experience and thousands of successful students."
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "descriptions": "Take a look at our modern facilities, professional vehicles, and students in action"
+  },
+  "contact": {
+    "title": "Ready to Start Driving?",
+    "descriptions": "Book your first lesson today and take the first step towards independence",
+    "book_your_lesson": "Book your lesson",
+    "label_first_name": "First Name",
+    "placeholder_first_name": "Enter First Name",
+    "label_last_name": "Last Name",
+    "placeholder_last_name": "Enter Last Name",
+    "label_email": "Email",
+    "placeholder_email": "Enter your email",
+    "label_phone": "Phone",
+    "placeholder_phone": "Enter Phone Number",
+    "select_courses": "Select courses",
+    "select_license_type": "Select license type",
+    "label_message": "Message",
+    "placeholder_message": "Tell us about your requirements",
+    "msg_no_results_found": "No results found",
+    "button_book_now": "Book Now"
   }
 }

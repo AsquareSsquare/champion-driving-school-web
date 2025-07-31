@@ -2,8 +2,11 @@ import React from "react";
 import ContactForm from "@/components/core/ContactForm";
 import { contactOptions } from "@/constants/data";
 import { Button } from "@/components/ui/button";
+import { getTranslations } from "next-intl/server";
 
-function Contact() {
+async function Contact() {
+  const t = await getTranslations();
+
   return (
     <section
       id="contact"
@@ -12,11 +15,10 @@ function Contact() {
       <div className="w-full max-w-7xl mx-auto px-6 xl:px-0 py-32">
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent hover:from-slate-200 hover:to-slate-400 transition-all duration-300 cursor-default">
-            Ready to Start Driving?
+            {t("contact.title")}
           </h1>
           <p className="text-xl text-slate-300 hover:text-white transition-colors duration-300 cursor-default">
-            Book your first lesson today and take the first step towards
-            independence
+            {t("contact.descriptions")}
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 mt-20">

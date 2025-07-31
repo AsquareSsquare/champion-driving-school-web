@@ -104,27 +104,24 @@ export const genders = [
 export const abouts: AboutCard[] = [
   {
     icon: Shield,
-    title: "Safety First",
-    description:
-      "Modern vehicles with advanced safety features and comprehensive insurance coverage for peace of mind.",
+    title: "safety_first",
+    description: "safety_first_description",
     gradient: "from-blue-100 to-indigo-100",
     hoverGradient: "group-hover:from-blue-200 group-hover:to-indigo-200",
     iconColor: "text-blue-600",
   },
   {
     icon: Users,
-    title: "Expert Instructors",
-    description:
-      "Certified professionals with years of experience and a passion for teaching safe driving habits.",
+    title: "expert_instructors",
+    description: "expert_instructors_description",
     gradient: "from-emerald-100 to-green-100",
     hoverGradient: "group-hover:from-emerald-200 group-hover:to-green-200",
     iconColor: "text-emerald-600",
   },
   {
     icon: Clock,
-    title: "Flexible Schedule",
-    description:
-      "Book lessons at your convenience with our easy online scheduling system and flexible timing.",
+    title: "flexible_schedule",
+    description: "flexible_schedule_description",
     gradient: "from-purple-100 to-violet-100",
     hoverGradient: "group-hover:from-purple-200 group-hover:to-violet-200",
     iconColor: "text-purple-600",
@@ -223,32 +220,32 @@ export const contactOptions: Contact[] = [
 
 export const licenceServices: LicenceService[] = [
   {
-    title: "Motorcycle Without Gear",
-    description: "Non-Transport motorcycle license",
+    title: "title_motorcycle_without_gear",
+    description: "description_motorcycle_without_gear",
     icon: "/vehicles/scooter.svg",
     tag: "MCWOG",
   },
   {
-    title: "Motorcycle With Gear",
-    description: "Non-Transport geared motorcycle license",
+    title: "title_motorcycle_with_gear",
+    description: "description_motorcycle_with_gear",
     icon: "/vehicles/motorcycle.svg",
     tag: "MCWG",
   },
   {
-    title: "Light Motor Vehicle",
-    description: "Standard car driving license",
+    title: "title_light_motor_vehicle",
+    description: "description_light_motor_vehicle",
     icon: "/vehicles/car.svg",
     tag: "LMV",
   },
   {
-    title: "3 Wheeler Non-Transport",
-    description: "Auto-rickshaw and similar vehicles",
+    title: "title_non_transport",
+    description: "description_non_transport",
     icon: "/vehicles/three-wheel-car.svg",
     tag: "3W-NT",
   },
   {
-    title: "Tractor Non-Transport",
-    description: "Agricultural tractor license",
+    title: "title_tractor_non_transport",
+    description: "description_tractor_license",
     icon: "/vehicles/tractor.svg",
     tag: "TRCTOR",
   },
@@ -256,18 +253,18 @@ export const licenceServices: LicenceService[] = [
 
 export const additionalServices: AdditionalService[] = [
   {
-    title: "Vehicle Ownership Change",
-    description: "Complete transfer documentation and legal assistance",
+    title: "title_vehicle_ownership_change",
+    description: "description_vehicle_ownership_change",
     icon: RefreshCcw,
   },
   {
-    title: "Police Challan Assistance",
-    description: "Traffic violation resolution and payment support",
+    title: "title_police_challan_assistance",
+    description: "description_police_challan_assistance",
     icon: FileText,
   },
   {
-    title: "Vehicle Insurance Services",
-    description: "Comprehensive insurance plans and claim assistance",
+    title: "title_vehicle_insurance_services",
+    description: "description_vehicle_insurance_services",
     icon: Shield,
   },
 ];

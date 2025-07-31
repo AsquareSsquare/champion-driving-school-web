@@ -11,6 +11,7 @@ import FormTextareaField from "@/components/form-fields/form-textarea-field";
 import { submitContact } from "@/services/client-actions/contactActions";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function ContactForm() {
   // const [courses, setCourses] = useState<MultiSelectOption[]>([]);
@@ -25,6 +26,8 @@ function ContactForm() {
       message: "",
     },
   });
+  const t = useTranslations();
+
 
   const handleOnSuccess = () => {
     toast.success("Your message has been submitted.");
@@ -54,27 +57,27 @@ function ContactForm() {
         <FormInputField
           control={form.control}
           name="name"
-          label="Full Name"
+          label={t("contact.label_first_name")}
           inputType="text"
-          placeholder="Enter full Name"
+          placeholder={t("contact.placeholder_first_name")}
           labelClassName="text-white"
           inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
         />
         <FormInputField
           control={form.control}
           name="email"
-          label="Email"
+          label={t("contact.label_email")}
           inputType="email"
-          placeholder="Enter your email"
+          placeholder={t("contact.placeholder_email")}
           labelClassName="text-white"
           inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
         />
         <FormInputField
           control={form.control}
           name="phone"
-          label="Phone"
+          label={t("contact.label_phone")}
           inputType="tel"
-          placeholder="Enter Phone Number"
+          placeholder={t("contact.placeholder_phone")}
           labelClassName="text-white"
           inputClassName="text-white bg-slate-700/50 border border-slate-600/50"
         />
@@ -116,8 +119,8 @@ function ContactForm() {
         <FormTextareaField
           control={form.control}
           name="message"
-          label="Message"
-          placeholder="Tell us about your requirements"
+          label={t("contact.label_message")}
+          placeholder={t("contact.placeholder_message")}
           labelClassName="text-white"
           inputClassName="bg-slate-700/50 border border-slate-600/50 field-sizing-content resize-none max-h-29.5 min-h-0 py-1.75 text-white"
         />
@@ -127,7 +130,7 @@ function ContactForm() {
           aria-label="Submit booking request"
           disabled={loading}
         >
-          {loading ? <Loader className="animate-spin" /> : "Book Now"}
+          {loading ? <Loader className="animate-spin" /> : t("contact.button_book_now")}
         </Button>
       </form>
     </Form>

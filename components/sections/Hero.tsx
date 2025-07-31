@@ -4,8 +4,10 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import MaskedDiv from "@/components/ui/masked-div";
 import CTAButton from "@/components/common/CTAButton";
+import { getTranslations } from "next-intl/server";
 
-function Hero() {
+async function Hero() {
+  const t = await getTranslations();
   return (
     <section id="home">
       <GridBackground>
@@ -14,25 +16,23 @@ function Hero() {
             <div className="max-w-[600px] space-y-6">
               <Badge className="bg-slate-800 cursor-pointer">
                 <Award className="text-blue-500" />
-                Trusted by 1000+ students
+                {t("home.trusted_by_student")}
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold">
-                Master the Road with{" "}
-                <span className="text-blue-500">Confidence</span>
+                {t("home.title")}{" "}
+                <span className="text-blue-500">
+                  {t("home.title_confidence")}
+                </span>
               </h1>
-              <p className="text-xl">
-                Professional driving lessons tailored to your pace. From
-                first-time drivers to advanced skills - we&apos;ll get you
-                road-ready safely and efficiently.
-              </p>
+              <p className="text-xl">{t("home.description")}</p>
               <div className="flex items-center gap-4">
                 <CTAButton
-                  btnText="Book your first lesson"
+                  btnText={t("home.book_your_first_lesson")}
                   to="courses"
                   icon={true}
                 />
                 <CTAButton
-                  btnText="Contact us"
+                  btnText={t("home.contact_us")}
                   to="contact"
                   icon={false}
                   variant="outline"
@@ -51,8 +51,8 @@ function Hero() {
               </MaskedDiv>
               <div className="p-4 rounded-xl bg-slate-800 absolute -top-6.5 hover:-translate-y-0.5 transition-transform duration-200 cursor-pointer">
                 <p className="text-white">
-                  <span className="font-bold text-green-500">99%</span> Pass
-                  rate
+                  <span className="font-bold text-green-500">99%</span>{" "}
+                  {t("home.pass_rate")}
                 </p>
               </div>
               <div className="p-4 flex gap-4 items-center rounded-xl bg-gray-300 cursor-pointer group/card absolute -bottom-10.5 -left-5.5">
@@ -61,10 +61,10 @@ function Hero() {
                 </div>
                 <div>
                   <p className="font-semibold text-slate-900 group-hover/card:text-green-600 transition-colors duration-300">
-                    Licensed & Insured
+                    {t("home.licensed_and_insured")}
                   </p>
                   <p className="text-sm text-slate-600">
-                    Fully certified instructors
+                    {t("home.fully_certified_instructors")}
                   </p>
                 </div>
               </div>
@@ -74,17 +74,17 @@ function Hero() {
                 </div>
                 <div>
                   <p className="font-semibold text-slate-900 group-hover/hour:text-blue-600 transition-colors duration-300">
-                    Flexible Hours
+                    {t("home.flexible_hours")}
                   </p>
-                  <p className="text-sm text-slate-600">7 Days a week</p>
+                  <p className="text-sm text-slate-600">{t("home.week")}</p>
                 </div>
               </div>
             </div>
             <div className="flex sm:hidden items-start gap-3 flex-wrap">
               <div className="p-4 rounded-xl bg-slate-800 hover:-translate-y-0.5 transition-transform duration-200 cursor-pointer">
                 <p className="text-white">
-                  <span className="font-bold text-green-500">99%</span> Pass
-                  rate
+                  <span className="font-bold text-green-500">99%</span>{" "}
+                  {t("home.pass_rate")}
                 </p>
               </div>
               <div className="p-4 flex gap-4 items-center rounded-xl bg-gray-300 cursor-pointer group/card">
@@ -93,10 +93,10 @@ function Hero() {
                 </div>
                 <div>
                   <p className="font-semibold text-slate-900 group-hover/card:text-green-600 transition-colors duration-300">
-                    Licensed & Insured
+                    {t("home.licensed_and_insured")}
                   </p>
                   <p className="text-sm text-slate-600">
-                    Fully certified instructors
+                    {t("home.fully_certified_instructors")}
                   </p>
                 </div>
               </div>
@@ -106,9 +106,9 @@ function Hero() {
                 </div>
                 <div>
                   <p className="font-semibold text-slate-900 group-hover/hour:text-blue-600 transition-colors duration-300">
-                    Flexible Hours
+                    {t("home.flexible_hours")}
                   </p>
-                  <p className="text-sm text-slate-600">7 Days a week</p>
+                  <p className="text-sm text-slate-600">{t("home.week")}</p>
                 </div>
               </div>
             </div>
