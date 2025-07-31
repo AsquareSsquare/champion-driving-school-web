@@ -9,24 +9,39 @@ export async function GET() {
     const baseUrl = 'https://www.championdrivingschool.in';
   
     const urls = [
-      '',         // homepage
-      '/en',      // English version
-      '/bn',      // Bengali version
-      // Remove fragment URLs like '/#about' — they are not allowed in sitemaps
+      {
+        path: '',         // homepage
+        priority: '1.0',
+        changefreq: 'daily'
+      },
+      {
+        path: '/en',      // English version
+        priority: '0.9',
+        changefreq: 'weekly'
+      },
+      {
+        path: '/bn',      // Bengali version
+        priority: '0.9',
+        changefreq: 'weekly'
+      }
     ];
   
     const now = new Date().toISOString();
   
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+          xmlns:xhtml="http://www.w3.org/1999/xhtml">
   ${urls
     .map(
-      (path) => `
+      (url) => `
     <url>
-      <loc>${baseUrl}${path}</loc>
+      <loc>${baseUrl}${url.path}</loc>
       <lastmod>${now}</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
+      <changefreq>${url.changefreq}</changefreq>
+      <priority>${url.priority}</priority>
+      <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en" />
+      <xhtml:link rel="alternate" hreflang="bn" href="${baseUrl}/bn" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}" />
     </url>`
     )
     .join('')}
