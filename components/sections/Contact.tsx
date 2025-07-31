@@ -2,10 +2,10 @@ import React from "react";
 import ContactForm from "@/components/core/ContactForm";
 import { contactOptions } from "@/constants/data";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Contact() {
-  const t = useTranslations();
+async function Contact() {
+  const t = await getTranslations();
 
   return (
     <section

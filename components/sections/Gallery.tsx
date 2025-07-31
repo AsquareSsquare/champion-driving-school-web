@@ -2,10 +2,10 @@ import React from "react";
 import { galleryImages } from "@/constants/data";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Gallery() {
-  const t = useTranslations();
+async function Gallery() {
+  const t = await getTranslations();
 
   return (
     <section id="gallery" className="min-h-screen flex items-center bg-white">

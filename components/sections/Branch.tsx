@@ -1,10 +1,10 @@
 import React from "react";
 import { branches } from "@/constants/data";
 import BranchCard from "@/components/core/BranchCard";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Branch() {
-  const t = useTranslations();
+async function Branch() {
+  const t = await getTranslations();
 
   return (
     <section id="branches" className="min-h-screen bg-muted flex items-center">

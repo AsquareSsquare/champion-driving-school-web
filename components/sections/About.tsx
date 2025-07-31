@@ -1,10 +1,10 @@
 import React from "react";
 import { abouts } from "@/constants/data";
 import AboutCard from "@/components/core/AboutCard";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function About() {
-  const t = useTranslations();
+async function About() {
+  const t = await getTranslations();
 
   return (
     <section id="about" className="min-h-screen flex items-center bg-white">

@@ -1,10 +1,10 @@
 import React from "react";
 import { instructors } from "@/constants/data";
 import InstructorCard from "@/components/common/InstructorCard";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Instructors() {
-  const t = useTranslations();
+async function Instructors() {
+  const t = await getTranslations();
 
   return (
     <section

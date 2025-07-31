@@ -2,10 +2,10 @@ import React from "react";
 import { courses } from "@/constants/data";
 import CourseCard from "@/components/core/CourseCard";
 import OtherServices from "@/components/core/OtherServices";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Course() {
-  const t = useTranslations();
+async function Course() {
+  const t = await getTranslations();
 
   return (
     <section id="courses" className="min-h-screen flex items-center bg-white">

@@ -4,10 +4,10 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import MaskedDiv from "@/components/ui/masked-div";
 import CTAButton from "@/components/common/CTAButton";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Hero() {
-  const t = useTranslations();
+async function Hero() {
+  const t = await getTranslations();
   return (
     <section id="home">
       <GridBackground>
