@@ -28,3 +28,24 @@ export interface Branch {
   created_at: string;
   updated_at: string;
 }
+
+export interface Learner {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  date_of_birth: string;
+  blood_group: string;
+  gender: string;
+  id_card: string;
+  license_types: string[];
+  total_fees: number;
+  balance_fees: number;
+  completed_classes: number;
+  admission_date: string;
+  is_active: string;
+  branch_id: number;
+  created_at: string;
+  updated_at: string;
+}

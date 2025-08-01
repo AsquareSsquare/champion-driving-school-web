@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { ReactNode } from "react";
 import { z } from "zod";
 
 export interface Language {
@@ -67,6 +68,7 @@ export interface SideBarMenu {
 
 export interface LearnerDetailsRequest {
   name: string;
+  email: string;
   phone: string;
   address: string;
   date_of_birth: string;
@@ -92,5 +94,22 @@ export interface PaymentDetailsRequest {
   amount_paid: number;
   payment_date: string;
   payment_method: string;
-  notes?: string;
+  notes: string;
+}
+
+export interface CustomModalProps<T> {
+  isOpen: T;
+  setIsOpen: (value: T) => void;
+  header: ReactNode;
+  children: ReactNode;
+  className?: string;
+  height?: string;
+}
+
+export interface MarkAttendancePayload {
+  student_id: number;
+  date: string;
+  status: string;
+  notes: string;
+  class_number: number;
 }

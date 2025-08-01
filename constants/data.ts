@@ -112,6 +112,17 @@ export const paymentTypes = [
   },
 ];
 
+export const attendanceStatus = [
+  {
+    label: "Present",
+    value: "present",
+  },
+  {
+    label: "Absent",
+    value: "absent",
+  },
+];
+
 export const abouts: AboutCard[] = [
   {
     icon: Shield,

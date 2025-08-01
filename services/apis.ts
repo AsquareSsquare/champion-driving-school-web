@@ -33,6 +33,10 @@ export const staffEndpoints = {
   ADD_STAFF_API: `${baseUrl}/auth/signup`,
 };
 
+export const attendanceEndpoints = {
+  MARK_ATTENDANCE_API: `${baseUrl}/protected/attendance`,
+};
+
 export const openEndpoints = {
   SUBMIT_CONTACT_API: `${baseUrl}/contact`,
 };
@@ -42,6 +46,9 @@ export const serverAPIs = {
 
   // Branch
   GET_ALL_BRANCHES_API: `${serverUrl}/protected/branches`,
+
+  // Learner
+  GET_ALL_LEARNERS_API: `${serverUrl}/protected/students`,
 
   // ADMIN
   GET_ALL_CONTACTS_API: `${serverUrl}/admin/contacts`,

@@ -16,6 +16,7 @@ export const contactSchema = z.object({
 export const learnerDetailsSchema = z.object({
   branchId: z.string(),
   name: z.string().min(3),
+  email: z.email(),
   address: z.string().min(3),
   dateOfBirth: z.date(),
   blood_group: z.string().min(2),
@@ -52,4 +53,11 @@ export const addStuffSchema = z.object({
   name: z.string().min(3),
   role: z.enum(["admin", "staff"]),
   branch_id: z.string().optional(),
+});
+
+export const markAttendanceSchema = z.object({
+  date: z.date(),
+  status: z.enum(["present", "absent"]),
+  notes: z.string().optional(),
+  class_number: z.string(),
 });

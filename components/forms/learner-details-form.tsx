@@ -45,6 +45,7 @@ function LearnerDetailsForm({
     defaultValues: {
       branchId: "",
       name: "",
+      email: "",
       address: "",
       dateOfBirth: undefined,
       blood_group: "",
@@ -103,6 +104,19 @@ function LearnerDetailsForm({
             placeholder="Enter your full name"
             inputType="text"
           />
+          <FormInputField
+            control={form.control}
+            name="email"
+            label="Email"
+            placeholder="Enter learner email"
+            inputType="email"
+          />
+          <FormInputField
+            control={form.control}
+            name="phone"
+            label="Phone"
+            placeholder="Enter your phone number"
+          />
           <FormSelectField
             control={form.control}
             name="gender"
@@ -130,12 +144,6 @@ function LearnerDetailsForm({
               placeholder="Enter your Blood group"
             />
           </div>
-          <FormInputField
-            control={form.control}
-            name="phone"
-            label="Phone"
-            placeholder="Enter your phone number"
-          />
           <FormInputField
             control={form.control}
             name="id_card"

@@ -3,23 +3,24 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { paymentDetailsSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
 import FormInputField from "@/components/form-fields/form-input-field";
-import { Button } from "@/components/ui/button";
 import FormCalenderField from "@/components/form-fields/form-calender-field";
-import FormTextareaField from "@/components/form-fields/form-textarea-field";
 import FormSelectField from "@/components/form-fields/form-select-field";
 import { paymentTypes } from "@/constants/data";
+import FormTextareaField from "@/components/form-fields/form-textarea-field";
+import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
+import { Form } from "@/components/ui/form";
 import { submitPaymentDetails } from "@/services/client-actions/paymentActions";
 import { toast } from "sonner";
+import { reFetchLearners } from "@/services/server-actions/refetchActions";
 
-function PaymentDetailsForm({
+function UpdatePaymentForm({
   learnerId,
-  setStep,
+  setPaymentUpdate,
 }: {
   learnerId: number;
-  setStep: (step: number) => void;
+  setPaymentUpdate: (value: number | undefined) => void;
 }) {
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof paymentDetailsSchema>>({
@@ -31,6 +32,7 @@ function PaymentDetailsForm({
       notes: "",
     },
   });
+
   const submitHandler = async (data: z.infer<typeof paymentDetailsSchema>) => {
     try {
       const result = await submitPaymentDetails(data, learnerId, setLoading);
@@ -38,17 +40,13 @@ function PaymentDetailsForm({
         toast.error(result.message);
         return;
       }
+      await reFetchLearners();
       toast.success(result.message);
       form.reset();
-      setStep(1);
+      setPaymentUpdate(undefined);
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleSkip = () => {
-    form.reset();
-    setStep(1);
   };
   return (
     <Form {...form}>
@@ -82,17 +80,23 @@ function PaymentDetailsForm({
             placeholder="Enter notes(optional)"
           />
 
-          <div className="flex flex-col gap-6">
-            <Button type="submit" disabled={loading}>
-              {loading ? <Loader className="animate-spin" /> : "Submit"}
-            </Button>
+          <div className="flex items-center gap-4 justify-end">
             <Button
               type="button"
               variant="outline"
               disabled={loading}
-              onClick={handleSkip}
+              onClick={() => setPaymentUpdate(undefined)}
             >
-              Skip
+              Cancel
+            </Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader className="animate-spin" /> Submitting...
+                </>
+              ) : (
+                "Submit"
+              )}
             </Button>
           </div>
         </div>
@@ -101,4 +105,4 @@ function PaymentDetailsForm({
   );
 }
 
-export default PaymentDetailsForm;
+export default UpdatePaymentForm;

@@ -17,6 +17,7 @@ export async function submitPaymentDetails(
     const paymentDate = formatDateToISO(details.payment_date);
     const payload: PaymentDetailsRequest = {
       ...details,
+      notes: details.notes || "",
       amount_paid: Number(details.amount_paid),
       student_id: learnerId,
       payment_date: paymentDate,
