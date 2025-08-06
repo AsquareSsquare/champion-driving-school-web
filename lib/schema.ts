@@ -26,6 +26,15 @@ export const learnerDetailsSchema = z.object({
   total_fees: z.string(),
 });
 
+export const editLearnerSchema = z.object({
+  name: z.string().min(3),
+  email: z.email(),
+  address: z.string().min(3),
+  blood_group: z.string().min(2),
+  dateOfBirth: z.date(),
+  phone: z.string().min(10),
+});
+
 export const licenseDetailsSchema = z.object({
   learner_app_no: z.string().optional(),
   learner_license_no: z.string().optional(),

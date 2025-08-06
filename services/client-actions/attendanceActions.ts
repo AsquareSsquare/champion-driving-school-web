@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { markAttendanceSchema } from "@/lib/schema";
-import { MarkAttendancePayload } from "@/types/root-types";
+import { Attendance, MarkAttendancePayload } from "@/types/root-types";
 import { formatDateToISO } from "@/lib/utils";
 import { apiConnector, RequestOptions } from "@/services/apiConnector";
 import { attendanceEndpoints } from "@/services/apis";
 
-const { MARK_ATTENDANCE_API } = attendanceEndpoints;
+const { MARK_ATTENDANCE_API, GET_ATTENDANCE_HISTORY_API } = attendanceEndpoints;
 
 export async function markAttendance(
   data: z.infer<typeof markAttendanceSchema>,
@@ -36,6 +36,31 @@ export async function markAttendance(
   } catch (error) {
     console.log(error);
     return { success: false, message: "Error marking attendance." };
+  } finally {
+    setLoading(false);
+  }
+}
+
+export async function getAttendanceHistory(
+  learnerId: number,
+  setLoading: (loading: boolean) => void,
+): Promise<{ attendances: Attendance[] | null }> {
+  try {
+    setLoading(true);
+    const response = await apiConnector(
+      `${GET_ATTENDANCE_HISTORY_API}/${learnerId}`,
+    );
+    if (!response.ok) {
+      return { attendances: null };
+    }
+    const result = await response.json();
+    if (!result.data.attendances) {
+      return { attendances: [] };
+    }
+    return { attendances: result.data.attendances };
+  } catch (error) {
+    console.log(error);
+    return { attendances: null };
   } finally {
     setLoading(false);
   }

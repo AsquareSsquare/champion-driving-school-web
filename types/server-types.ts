@@ -46,6 +46,7 @@ export interface Learner {
   admission_date: string;
   is_active: string;
   branch_id: number;
+  last_attendance_date?: string;
   created_at: string;
   updated_at: string;
 }

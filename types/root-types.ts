@@ -113,3 +113,53 @@ export interface MarkAttendancePayload {
   notes: string;
   class_number: number;
 }
+
+export interface Attendance {
+  id: string;
+  student_id: number;
+  student_name: string;
+  date: string;
+  status: string;
+  notes: string;
+  class_number: string;
+  marked_by_user_id: string;
+  marked_by_username: string;
+  marked_by_role: string;
+  branch_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Payment {
+  id: number;
+  student_id: number;
+  student_name: string;
+  amount_paid: number;
+  payment_date: string;
+  payment_method: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface License {
+  id: string;
+  student_id: number;
+  learner_app_no: string;
+  learner_license_no: string;
+  dl_app_no: string;
+  driving_license_no: string;
+  status: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UpdateLearnerPayload {
+  name: string;
+  email: string;
+  address: string;
+  blood_group: string;
+  date_of_birth: string;
+  phone: string;
+}

@@ -5,7 +5,6 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  OnChangeFn,
   PaginationState,
   RowSelectionState,
 } from "@tanstack/table-core";
@@ -62,7 +61,6 @@ function CustomDataTable<TData, TValue>({
   customComp,
   searchKey,
   selectedText,
-  onSelectBtnClick,
   enableRowSelection,
   setSelectedItems,
 }: DataTableProps<TData, TValue>) {
@@ -119,12 +117,9 @@ function CustomDataTable<TData, TValue>({
     const selectedRows = table
       .getFilteredSelectedRowModel()
       .rows.map((row) => row.original);
-    // console.log("Table selectedRows", selectedRows);
     setSelectedItems && setSelectedItems(selectedRows);
-    // onSelectBtnClick && onSelectBtnClick();
   };
 
-  // console.log("Column filters: ", columnFilters);
   return (
     <div className="space-y-6">
       <div className="flex items-start @2xl/main:items-center justify-between gap-4 flex-col @2xl/main:flex-row">
@@ -140,7 +135,7 @@ function CustomDataTable<TData, TValue>({
                 onChange={(event) =>
                   table.getColumn(searchKey)?.setFilterValue(event.target.value)
                 }
-                className="min-w-[250px] ps-9"
+                className="w-full sm:w-[250px] ps-9"
               />
               <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
                 <ListFilterIcon size={16} aria-hidden="true" />
@@ -231,7 +226,7 @@ function CustomDataTable<TData, TValue>({
           </Select>
         </div>
 
-        <div className="text-muted-foreground flex items-center justify-end text-sm gap-4 whitespace-nowrap">
+        <div className="text-muted-foreground flex flex-col xs:flex-row items-start xs:items-center justify-end text-sm gap-0 xs:gap-4 whitespace-nowrap">
           <p
             className="text-muted-foreground text-sm whitespace-nowrap"
             aria-live="polite"

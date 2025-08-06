@@ -19,10 +19,8 @@ async function Hero() {
                 {t("home.trusted_by_student")}
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold">
-                {t("home.title")}{" "}
-                <span className="text-blue-500">
-                  {t("home.title_confidence")}
-                </span>
+                Master the Road with{" "}
+                <span className="text-blue-500">Confidence</span>
               </h1>
               <p className="text-xl">{t("home.description")}</p>
               <div className="flex items-center gap-4">
@@ -39,6 +37,7 @@ async function Hero() {
                 />
               </div>
             </div>
+            {/*<HeroImages />*/}
             <div className="relative hidden sm:block">
               <MaskedDiv maskType="type-2">
                 <Image

@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/table-core";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import CustomDataTable from "@/components/custom-comp/custom-data-table";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format, isToday } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -20,6 +20,9 @@ import React, { useState } from "react";
 import CustomModal from "@/components/custom-comp/custom-modal";
 import MarkAttendanceForm from "@/components/forms/mark-attendance-form";
 import UpdatePaymentForm from "@/components/forms/update-payment-form";
+import EditLearner from "@/components/learners/edit-learner";
+import UpdateLearnerDetails from "@/components/learners/update-learner-details";
+import LearnerHistory from "@/components/learners/learner-history";
 
 function LearnersTable({
   learners,
@@ -39,6 +42,8 @@ function LearnersTable({
   const [paymentUpdate, setPaymentUpdate] = useState<number | undefined>(
     undefined,
   );
+  const [editLearner, setEditLearner] = useState<number | undefined>(undefined);
+  const [history, setHistory] = useState<number | undefined>(undefined);
 
   // Form column
   const learnerColumn: ColumnDef<Learner>[] = [
@@ -87,9 +92,23 @@ function LearnersTable({
     },
     {
       accessorKey: "completed_classes",
-      header: "Classes completed",
+      header: "Classes",
       cell: ({ row }) => (
         <div className="ml-6">{row.getValue("completed_classes")}</div>
+      ),
+    },
+    {
+      accessorKey: "last_attendance_date",
+      header: "Attendance",
+      cell: ({ row }) => (
+        <div>
+          {row.getValue("last_attendance_date") &&
+          isToday(new Date(row.getValue("last_attendance_date"))) ? (
+            <Badge className="bg-emerald-500">Present</Badge>
+          ) : (
+            <Badge variant="outline">Absent</Badge>
+          )}
+        </div>
       ),
     },
     {
@@ -128,11 +147,11 @@ function LearnersTable({
             >
               Mark attendance
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setEditLearner(row.original.id)}
+            >
               Edit learner details
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Edit license details
             </DropdownMenuItem>
             {row.original.balance_fees !== 0 && (
               <DropdownMenuItem
@@ -143,8 +162,11 @@ function LearnersTable({
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
-              Course completed
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setHistory(row.original.id)}
+            >
+              History
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer" variant="destructive">
               <Trash2 /> Delete learner
@@ -155,9 +177,6 @@ function LearnersTable({
     },
   ];
 
-  const handleSelectClick = () => {
-    console.log("Selected Value: ", selectedLearners);
-  };
   return (
     <>
       <CustomDataTable
@@ -167,8 +186,7 @@ function LearnersTable({
         customComp={<BranchSelector branches={branches} branchId={branchId} />}
         searchKey="name"
         selectedText="Mark attendance"
-        enableRowSelection
-        onSelectBtnClick={handleSelectClick}
+        // enableRowSelection
         setSelectedItems={setSelectedLearners}
       />
 
@@ -196,6 +214,27 @@ function LearnersTable({
             setPaymentUpdate={setPaymentUpdate}
           />
         )}
+      </CustomModal>
+
+      <CustomModal
+        isOpen={editLearner}
+        setIsOpen={setEditLearner}
+        header="Edit learner details"
+      >
+        {editLearner && (
+          <UpdateLearnerDetails
+            learnerId={editLearner}
+            setEditLearner={setEditLearner}
+          />
+        )}
+      </CustomModal>
+
+      <CustomModal
+        isOpen={history}
+        setIsOpen={setHistory}
+        header="Activity record"
+      >
+        {history && <LearnerHistory learnerId={history} />}
       </CustomModal>
     </>
   );

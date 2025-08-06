@@ -1,9 +1,13 @@
 import { z } from "zod";
-import { learnerDetailsSchema } from "@/lib/schema";
-import { LearnerDetailsRequest } from "@/types/root-types";
+import { editLearnerSchema, learnerDetailsSchema } from "@/lib/schema";
+import {
+  LearnerDetailsRequest,
+  UpdateLearnerPayload,
+} from "@/types/root-types";
 import { formatDateToISO } from "@/lib/utils";
 import { apiConnector, RequestOptions } from "@/services/apiConnector";
 import { learnerEndpoints } from "@/services/apis";
+import { Learner } from "@/types/server-types";
 
 const { SUBMIT_LEARNER_DETAILS_API } = learnerEndpoints;
 
@@ -57,6 +61,66 @@ export async function submitLearnerDetails(
       message: "Error submitting learner details",
       learnerId: undefined,
     };
+  } finally {
+    setLoading(false);
+  }
+}
+
+export async function getLearnerDetails(
+  learnerId: number,
+  setLoading: (isLoading: boolean) => void,
+): Promise<{ learner: Learner | null }> {
+  try {
+    setLoading(true);
+    const response = await apiConnector(
+      `${SUBMIT_LEARNER_DETAILS_API}/${learnerId}`,
+    );
+    if (!response.ok) {
+      return { learner: null };
+    }
+    const result = await response.json();
+    return { learner: result.data.student };
+  } catch (error) {
+    console.error(error);
+    return { learner: null };
+  } finally {
+    setLoading(false);
+  }
+}
+
+export async function updateLearnerDetails(
+  learnerId: number,
+  data: z.infer<typeof editLearnerSchema>,
+  setLoading: (isLoading: boolean) => void,
+) {
+  try {
+    setLoading(true);
+    const dob = formatDateToISO(data.dateOfBirth);
+    const payload: UpdateLearnerPayload = {
+      name: data.name,
+      email: data.email,
+      address: data.address,
+      blood_group: data.blood_group,
+      phone: data.phone,
+      date_of_birth: dob,
+    };
+    const options: RequestOptions = {
+      method: "PUT",
+      data: payload,
+    };
+
+    const response = await apiConnector(
+      `${SUBMIT_LEARNER_DETAILS_API}/${learnerId}`,
+      options,
+    );
+
+    if (!response.ok) {
+      return { success: false, message: "Could not update learner details" };
+    }
+    return { success: true, message: "Learner details updated successfully" };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "Error updating learner details" };
   } finally {
     setLoading(false);
   }

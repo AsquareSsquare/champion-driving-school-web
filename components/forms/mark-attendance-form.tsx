@@ -26,7 +26,7 @@ function MarkAttendanceForm({
   const form = useForm<z.infer<typeof markAttendanceSchema>>({
     resolver: zodResolver(markAttendanceSchema),
     defaultValues: {
-      date: undefined,
+      date: new Date(),
       status: "present",
       class_number: "",
       notes: "",

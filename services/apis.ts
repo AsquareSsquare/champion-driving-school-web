@@ -19,10 +19,12 @@ export const learnerEndpoints = {
 
 export const licenseEndpoints = {
   SUBMIT_LICENSE_DETAILS_API: `${baseUrl}/protected/license-documents`,
+  GET_LICENSE_DETAILS_API: `${baseUrl}/protected/license-documents/student`,
 };
 
 export const paymentEndpoints = {
   SUBMIT_PAYMENT_DETAILS_API: `${baseUrl}/protected/payments`,
+  GET_PAYMENT_HISTORY_API: `${baseUrl}/protected/payments/student`,
 };
 
 export const branchEndpoints = {
@@ -35,6 +37,7 @@ export const staffEndpoints = {
 
 export const attendanceEndpoints = {
   MARK_ATTENDANCE_API: `${baseUrl}/protected/attendance`,
+  GET_ATTENDANCE_HISTORY_API: `${baseUrl}/protected/attendance/student`,
 };
 
 export const openEndpoints = {

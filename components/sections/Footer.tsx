@@ -47,6 +47,12 @@ function Footer() {
             © 2025 Champion Driving School. All rights reserved. | Licensed by
             the State Department of Motor Vehicles
           </p>
+          <p className="mt-4">
+            Developed by{" "}
+            <span className="text-blue-500 cursor-pointer">
+              A<sup>2</sup>S<sup>2</sup>
+            </span>
+          </p>
         </div>
       </div>
     </footer>
