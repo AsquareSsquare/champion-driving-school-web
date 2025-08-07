@@ -11,10 +11,8 @@ const { SUBMIT_PAYMENT_DETAILS_API, GET_PAYMENT_HISTORY_API } =
 export async function submitPaymentDetails(
   details: z.infer<typeof paymentDetailsSchema>,
   learnerId: number,
-  setLoading: (loading: boolean) => void,
 ) {
   try {
-    setLoading(true);
     const paymentDate = formatDateToISO(details.payment_date);
     const payload: PaymentDetailsRequest = {
       ...details,
@@ -38,8 +36,6 @@ export async function submitPaymentDetails(
   } catch (error) {
     console.log(error);
     return { success: false, message: "Error submitting payment details" };
-  } finally {
-    setLoading(false);
   }
 }
 

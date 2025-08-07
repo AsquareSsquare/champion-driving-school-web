@@ -7,7 +7,6 @@ import { Form } from "@/components/ui/form";
 import FormCalenderField from "@/components/form-fields/form-calender-field";
 import FormSelectField from "@/components/form-fields/form-select-field";
 import { attendanceStatus } from "@/constants/data";
-import FormInputField from "@/components/form-fields/form-input-field";
 import FormTextareaField from "@/components/form-fields/form-textarea-field";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
@@ -33,18 +32,15 @@ function MarkAttendanceForm({
     defaultValues: {
       date: new Date(),
       status: "present",
-      class_number: String(attendanceData.classes + 1),
+      class_number: "1",
       notes: "",
     },
   });
 
   const submitHandler = async (data: z.infer<typeof markAttendanceSchema>) => {
     try {
-      const result = await markAttendance(
-        data,
-        attendanceData.learnerId,
-        setLoading,
-      );
+      setLoading(true);
+      const result = await markAttendance(data, attendanceData.learnerId);
       if (!result.success) {
         toast.error(result.message);
         return;
@@ -55,6 +51,8 @@ function MarkAttendanceForm({
       setMarkAttendanceModal(undefined);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -72,15 +70,16 @@ function MarkAttendanceForm({
               name="status"
               items={attendanceStatus}
               label="Status"
+              disabled={true}
             />
           </div>
-          <FormInputField
-            control={form.control}
-            name="class_number"
-            label="Class number"
-            placeholder="Enter class number"
-            inputType="number"
-          />
+          {/*<FormInputField*/}
+          {/*  control={form.control}*/}
+          {/*  name="class_number"*/}
+          {/*  label="Class number"*/}
+          {/*  placeholder="Enter class number"*/}
+          {/*  inputType="number"*/}
+          {/*/>*/}
           <FormTextareaField
             control={form.control}
             name="notes"

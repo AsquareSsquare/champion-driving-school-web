@@ -92,7 +92,9 @@ function LearnersTable({
       accessorKey: "admission_date",
       header: "Admission Date",
       cell: ({ row }) => (
-        <div>{format(new Date(row.getValue("admission_date")), "MMM d")}</div>
+        <div>
+          {format(new Date(row.getValue("admission_date")), "MMM d, yyyy")}
+        </div>
       ),
     },
     {

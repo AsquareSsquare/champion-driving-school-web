@@ -73,12 +73,8 @@ function EditLearnerDetailsForm({
 
   const submitHandler = async (data: z.infer<typeof editLearnerSchema>) => {
     try {
-      const result = await updateLearnerDetails(
-        learner.id,
-        data,
-        courses,
-        setLoading,
-      );
+      setLoading(true);
+      const result = await updateLearnerDetails(learner.id, data, courses);
       if (!result.success) {
         toast.error(result.message);
         return;
@@ -88,6 +84,8 @@ function EditLearnerDetailsForm({
       setEditLearner(undefined);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (

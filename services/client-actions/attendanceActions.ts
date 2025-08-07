@@ -10,10 +10,8 @@ const { MARK_ATTENDANCE_API, GET_ATTENDANCE_HISTORY_API } = attendanceEndpoints;
 export async function markAttendance(
   data: z.infer<typeof markAttendanceSchema>,
   studentId: number,
-  setLoading: (loading: boolean) => void,
 ) {
   try {
-    setLoading(true);
     const attendanceDate = formatDateToISO(data.date);
     const payload: MarkAttendancePayload = {
       student_id: studentId,
@@ -36,8 +34,6 @@ export async function markAttendance(
   } catch (error) {
     console.log(error);
     return { success: false, message: "Error marking attendance." };
-  } finally {
-    setLoading(false);
   }
 }
 

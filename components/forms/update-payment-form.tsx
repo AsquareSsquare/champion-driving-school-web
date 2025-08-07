@@ -35,7 +35,8 @@ function UpdatePaymentForm({
 
   const submitHandler = async (data: z.infer<typeof paymentDetailsSchema>) => {
     try {
-      const result = await submitPaymentDetails(data, learnerId, setLoading);
+      setLoading(true);
+      const result = await submitPaymentDetails(data, learnerId);
       if (!result.success) {
         toast.error(result.message);
         return;
@@ -46,6 +47,8 @@ function UpdatePaymentForm({
       setPaymentUpdate(undefined);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (

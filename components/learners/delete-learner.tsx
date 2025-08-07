@@ -18,7 +18,8 @@ function DeleteLearner({
   };
   const handleDelete = async () => {
     try {
-      const result = await deleteLearner(learnerId, setLoading);
+      setLoading(true);
+      const result = await deleteLearner(learnerId);
       if (!result.success) {
         toast.error(result.message);
         return;
@@ -28,6 +29,8 @@ function DeleteLearner({
       setDelete(undefined);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (

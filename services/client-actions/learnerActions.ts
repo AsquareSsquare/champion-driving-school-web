@@ -89,10 +89,8 @@ export async function updateLearnerDetails(
   learnerId: number,
   details: z.infer<typeof editLearnerSchema>,
   courses: string[],
-  setLoading: (isLoading: boolean) => void,
 ) {
   try {
-    setLoading(true);
     const { total_fees, dateOfBirth, branchId, ...data } = details;
     const dob = formatDateToISO(dateOfBirth);
     const payload: LearnerDetailsRequest = {
@@ -119,17 +117,11 @@ export async function updateLearnerDetails(
   } catch (error) {
     console.error(error);
     return { success: false, message: "Error updating learner details" };
-  } finally {
-    setLoading(false);
   }
 }
 
-export async function deleteLearner(
-  learnerId: number,
-  setLoading: (isLoading: boolean) => void,
-) {
+export async function deleteLearner(learnerId: number) {
   try {
-    setLoading(true);
     const options: RequestOptions = {
       method: "DELETE",
     };
@@ -144,7 +136,5 @@ export async function deleteLearner(
   } catch (error) {
     console.error(error);
     return { success: false, message: "Error deleting learner details" };
-  } finally {
-    setLoading(false);
   }
 }
