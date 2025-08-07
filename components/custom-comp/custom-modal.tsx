@@ -24,7 +24,7 @@ function CustomModal<T>({
     >
       <DialogContent
         className={cn(
-          "flex flex-col gap-0 p-0 [&>button:last-child]:top-3.5 sm:max-h-[min(640px,80vh)]" +
+          "flex flex-col gap-0 p-0 [&>button:last-child]:top-3.5 max-h-[min(640px,80vh)]" +
             " sm:max-w-lg",
           className,
         )}
