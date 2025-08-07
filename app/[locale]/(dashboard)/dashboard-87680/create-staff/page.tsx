@@ -6,7 +6,7 @@ import AddStaff from "@/components/add-staff/add-staff";
 
 export default function CreateStuffPage() {
   return (
-    <DashboardContent header="Add new learner">
+    <DashboardContent header="Add new staff">
       <div className="mx-6">
         <Suspense
           fallback={

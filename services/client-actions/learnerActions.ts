@@ -1,9 +1,6 @@
 import { z } from "zod";
 import { editLearnerSchema, learnerDetailsSchema } from "@/lib/schema";
-import {
-  LearnerDetailsRequest,
-  UpdateLearnerPayload,
-} from "@/types/root-types";
+import { LearnerDetailsRequest } from "@/types/root-types";
 import { formatDateToISO } from "@/lib/utils";
 import { apiConnector, RequestOptions } from "@/services/apiConnector";
 import { learnerEndpoints } from "@/services/apis";
@@ -90,19 +87,20 @@ export async function getLearnerDetails(
 
 export async function updateLearnerDetails(
   learnerId: number,
-  data: z.infer<typeof editLearnerSchema>,
+  details: z.infer<typeof editLearnerSchema>,
+  courses: string[],
   setLoading: (isLoading: boolean) => void,
 ) {
   try {
     setLoading(true);
-    const dob = formatDateToISO(data.dateOfBirth);
-    const payload: UpdateLearnerPayload = {
-      name: data.name,
-      email: data.email,
-      address: data.address,
-      blood_group: data.blood_group,
-      phone: data.phone,
+    const { total_fees, dateOfBirth, branchId, ...data } = details;
+    const dob = formatDateToISO(dateOfBirth);
+    const payload: LearnerDetailsRequest = {
+      ...data,
+      total_fees: Number(total_fees),
+      branch_id: Number(branchId),
       date_of_birth: dob,
+      license_types: courses,
     };
     const options: RequestOptions = {
       method: "PUT",
@@ -121,6 +119,31 @@ export async function updateLearnerDetails(
   } catch (error) {
     console.error(error);
     return { success: false, message: "Error updating learner details" };
+  } finally {
+    setLoading(false);
+  }
+}
+
+export async function deleteLearner(
+  learnerId: number,
+  setLoading: (isLoading: boolean) => void,
+) {
+  try {
+    setLoading(true);
+    const options: RequestOptions = {
+      method: "DELETE",
+    };
+    const response = await apiConnector(
+      `${SUBMIT_LEARNER_DETAILS_API}/${learnerId}`,
+      options,
+    );
+    if (!response.ok) {
+      return { success: false, message: "Could not delete learner details" };
+    }
+    return { success: true, message: "Learner deleted successfully" };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "Error deleting learner details" };
   } finally {
     setLoading(false);
   }

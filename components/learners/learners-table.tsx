@@ -18,11 +18,13 @@ import { MoreHorizontal, Trash2 } from "lucide-react";
 import BranchSelector from "@/components/core/branch-selector";
 import React, { useState } from "react";
 import CustomModal from "@/components/custom-comp/custom-modal";
-import MarkAttendanceForm from "@/components/forms/mark-attendance-form";
+import MarkAttendanceForm, {
+  MarkAttendanceData,
+} from "@/components/forms/mark-attendance-form";
 import UpdatePaymentForm from "@/components/forms/update-payment-form";
-import EditLearner from "@/components/learners/edit-learner";
 import UpdateLearnerDetails from "@/components/learners/update-learner-details";
 import LearnerHistory from "@/components/learners/learner-history";
+import DeleteLearner from "@/components/learners/delete-learner";
 
 function LearnersTable({
   learners,
@@ -37,13 +39,16 @@ function LearnersTable({
 
   // Modal states
   const [markAttendanceModal, setMarkAttendanceModal] = useState<
-    number | undefined
+    MarkAttendanceData | undefined
   >(undefined);
   const [paymentUpdate, setPaymentUpdate] = useState<number | undefined>(
     undefined,
   );
   const [editLearner, setEditLearner] = useState<number | undefined>(undefined);
   const [history, setHistory] = useState<number | undefined>(undefined);
+  const [deleteLearner, setDeleteLearner] = useState<number | undefined>(
+    undefined,
+  );
 
   // Form column
   const learnerColumn: ColumnDef<Learner>[] = [
@@ -143,7 +148,12 @@ function LearnersTable({
           <DropdownMenuContent align="start">
             <DropdownMenuItem
               className="cursor-pointer"
-              onClick={() => setMarkAttendanceModal(row.original.id)}
+              onClick={() =>
+                setMarkAttendanceModal({
+                  learnerId: row.original.id,
+                  classes: row.original.completed_classes,
+                })
+              }
             >
               Mark attendance
             </DropdownMenuItem>
@@ -168,7 +178,11 @@ function LearnersTable({
             >
               History
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer" variant="destructive">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              variant="destructive"
+              onClick={() => setDeleteLearner(row.original.id)}
+            >
               <Trash2 /> Delete learner
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -197,7 +211,7 @@ function LearnersTable({
       >
         {markAttendanceModal && (
           <MarkAttendanceForm
-            studentId={markAttendanceModal}
+            attendanceData={markAttendanceModal}
             setMarkAttendanceModal={setMarkAttendanceModal}
           />
         )}
@@ -224,6 +238,7 @@ function LearnersTable({
         {editLearner && (
           <UpdateLearnerDetails
             learnerId={editLearner}
+            branches={branches}
             setEditLearner={setEditLearner}
           />
         )}
@@ -235,6 +250,19 @@ function LearnersTable({
         header="Activity record"
       >
         {history && <LearnerHistory learnerId={history} />}
+      </CustomModal>
+
+      <CustomModal
+        isOpen={deleteLearner}
+        setIsOpen={setDeleteLearner}
+        header="Final confrimation"
+      >
+        {deleteLearner && (
+          <DeleteLearner
+            learnerId={deleteLearner}
+            setDelete={setDeleteLearner}
+          />
+        )}
       </CustomModal>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Learner } from "@/types/server-types";
+import { Branch, Learner } from "@/types/server-types";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { editLearnerSchema } from "@/lib/schema";
@@ -9,34 +9,76 @@ import FormInputField from "@/components/form-fields/form-input-field";
 import FormTextareaField from "@/components/form-fields/form-textarea-field";
 import FormCalenderField from "@/components/form-fields/form-calender-field";
 import { Button } from "@/components/ui/button";
-import { Loader } from "lucide-react";
+import { CheckIcon, Loader } from "lucide-react";
 import { updateLearnerDetails } from "@/services/client-actions/learnerActions";
 import { toast } from "sonner";
 import { reFetchLearners } from "@/services/server-actions/refetchActions";
+import { getBranchSelectItems } from "@/lib/utils";
+import FormSelectField from "@/components/form-fields/form-select-field";
+import { courseSelectItems, genders } from "@/constants/data";
+import { Label } from "@/components/ui/label";
+import {
+  Tags,
+  TagsContent,
+  TagsEmpty,
+  TagsGroup,
+  TagsInput,
+  TagsItem,
+  TagsList,
+  TagsTrigger,
+  TagsValue,
+} from "@/components/ui/kibo-ui/tags";
 
 function EditLearnerDetailsForm({
   learner,
+  branches,
   setEditLearner,
 }: {
   learner: Learner;
+  branches: Branch[];
   setEditLearner: (value: number | undefined) => void;
 }) {
   const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState<string[]>(learner.license_types);
   const form = useForm<z.infer<typeof editLearnerSchema>>({
     resolver: zodResolver(editLearnerSchema),
     defaultValues: {
+      branchId: String(learner.branch_id),
       name: learner.name,
       email: learner.email,
       address: learner.address,
       blood_group: learner.blood_group,
       dateOfBirth: new Date(learner.date_of_birth),
       phone: learner.phone,
+      id_card: learner.id_card,
+      gender: learner.gender,
+      total_fees: String(learner.total_fees),
     },
   });
 
+  const handleRemove = (value: string) => {
+    if (!courses.includes(value)) {
+      return;
+    }
+    setCourses((prev) => prev.filter((v) => v !== value));
+  };
+
+  const handleSelect = (value: string) => {
+    if (courses.includes(value)) {
+      handleRemove(value);
+      return;
+    }
+    setCourses((prev) => [...prev, value]);
+  };
+
   const submitHandler = async (data: z.infer<typeof editLearnerSchema>) => {
     try {
-      const result = await updateLearnerDetails(learner.id, data, setLoading);
+      const result = await updateLearnerDetails(
+        learner.id,
+        data,
+        courses,
+        setLoading,
+      );
       if (!result.success) {
         toast.error(result.message);
         return;
@@ -52,6 +94,13 @@ function EditLearnerDetailsForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(submitHandler)}>
         <div className="flex flex-col gap-6">
+          <FormSelectField
+            control={form.control}
+            name="branchId"
+            items={getBranchSelectItems(branches)}
+            placeholder="Select a branch"
+            label="Select branch"
+          />
           <FormInputField
             control={form.control}
             name="name"
@@ -71,6 +120,13 @@ function EditLearnerDetailsForm({
             name="phone"
             label="Phone"
             placeholder="Enter your phone number"
+          />
+          <FormSelectField
+            control={form.control}
+            name="gender"
+            items={genders}
+            placeholder="Select learner gender"
+            label="Select gender"
           />
           <FormTextareaField
             control={form.control}
@@ -92,6 +148,54 @@ function EditLearnerDetailsForm({
               placeholder="Enter your Blood group"
             />
           </div>
+          <FormInputField
+            control={form.control}
+            name="id_card"
+            label="Learner aadhar card number"
+            placeholder="Enter learner aadhar number"
+          />
+          <div className="space-y-3">
+            <Label>Select courses</Label>
+            <Tags className="">
+              <TagsTrigger>
+                {courses.map((tag) => (
+                  <TagsValue key={tag} onRemove={() => handleRemove(tag)}>
+                    {courseSelectItems.find((t) => t.id === tag)?.label}
+                  </TagsValue>
+                ))}
+              </TagsTrigger>
+              <TagsContent>
+                <TagsInput placeholder="Search tag..." />
+                <TagsList>
+                  <TagsEmpty />
+                  <TagsGroup>
+                    {courseSelectItems.map((tag) => (
+                      <TagsItem
+                        key={tag.id}
+                        onSelect={handleSelect}
+                        value={tag.id}
+                      >
+                        {tag.label}
+                        {courses.includes(tag.id) && (
+                          <CheckIcon
+                            className="text-muted-foreground"
+                            size={14}
+                          />
+                        )}
+                      </TagsItem>
+                    ))}
+                  </TagsGroup>
+                </TagsList>
+              </TagsContent>
+            </Tags>
+          </div>
+          <FormInputField
+            control={form.control}
+            name="total_fees"
+            label="Total fees"
+            placeholder="Enter total fees"
+            inputType="number"
+          />
           <div className="flex items-center gap-4 justify-end">
             <Button
               type="button"

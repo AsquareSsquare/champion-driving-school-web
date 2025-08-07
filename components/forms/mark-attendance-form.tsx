@@ -15,12 +15,17 @@ import { markAttendance } from "@/services/client-actions/attendanceActions";
 import { toast } from "sonner";
 import { reFetchLearners } from "@/services/server-actions/refetchActions";
 
+export interface MarkAttendanceData {
+  learnerId: number;
+  classes: number;
+}
+
 function MarkAttendanceForm({
-  studentId,
+  attendanceData,
   setMarkAttendanceModal,
 }: {
-  studentId: number;
-  setMarkAttendanceModal: (value: number | undefined) => void;
+  attendanceData: MarkAttendanceData;
+  setMarkAttendanceModal: (value: MarkAttendanceData | undefined) => void;
 }) {
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof markAttendanceSchema>>({
@@ -28,14 +33,18 @@ function MarkAttendanceForm({
     defaultValues: {
       date: new Date(),
       status: "present",
-      class_number: "",
+      class_number: String(attendanceData.classes + 1),
       notes: "",
     },
   });
 
   const submitHandler = async (data: z.infer<typeof markAttendanceSchema>) => {
     try {
-      const result = await markAttendance(data, studentId, setLoading);
+      const result = await markAttendance(
+        data,
+        attendanceData.learnerId,
+        setLoading,
+      );
       if (!result.success) {
         toast.error(result.message);
         return;

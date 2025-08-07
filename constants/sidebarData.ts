@@ -21,11 +21,11 @@ export const sideBarNavItemsAdmin: SideBarMenu[] = [
     url: `/${DASHBOARD_PAGE}/bookings`,
     icon: Calendar,
   },
-  {
-    title: "Add branch",
-    url: `/${DASHBOARD_PAGE}/create-branch`,
-    icon: Split,
-  },
+  // {
+  //   title: "Add branch",
+  //   url: `/${DASHBOARD_PAGE}/create-branch`,
+  //   icon: Split,
+  // },
   {
     title: "Add staff",
     url: `/${DASHBOARD_PAGE}/create-staff`,

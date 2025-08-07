@@ -2,12 +2,15 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import EditLearner from "@/components/learners/edit-learner";
 import EditLicense from "@/components/learners/edit-license";
+import { Branch } from "@/types/server-types";
 
 function UpdateLearnerDetails({
   learnerId,
+  branches,
   setEditLearner,
 }: {
   learnerId: number;
+  branches: Branch[];
   setEditLearner: (value: number | undefined) => void;
 }) {
   return (
@@ -17,7 +20,11 @@ function UpdateLearnerDetails({
         <TabsTrigger value="edit-license">Edit license</TabsTrigger>
       </TabsList>
       <TabsContent value="edit-learner" className="py-4">
-        <EditLearner learnerId={learnerId} setEditLearner={setEditLearner} />
+        <EditLearner
+          learnerId={learnerId}
+          branches={branches}
+          setEditLearner={setEditLearner}
+        />
       </TabsContent>
       <TabsContent value="edit-license" className="py-4">
         <EditLicense learnerId={learnerId} setEditLearner={setEditLearner} />

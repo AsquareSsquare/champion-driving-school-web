@@ -27,12 +27,16 @@ export const learnerDetailsSchema = z.object({
 });
 
 export const editLearnerSchema = z.object({
+  branchId: z.string(),
   name: z.string().min(3),
   email: z.email(),
   address: z.string().min(3),
   blood_group: z.string().min(2),
   dateOfBirth: z.date(),
   phone: z.string().min(10),
+  id_card: z.string().min(12),
+  gender: z.string(),
+  total_fees: z.string(),
 });
 
 export const licenseDetailsSchema = z.object({
