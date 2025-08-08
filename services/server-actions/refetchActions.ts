@@ -9,3 +9,7 @@ export async function reFetchBookings() {
 export async function reFetchLearners() {
   revalidateTag("learners");
 }
+
+export async function reFetchStaffs() {
+  revalidateTag("staffs");
+}

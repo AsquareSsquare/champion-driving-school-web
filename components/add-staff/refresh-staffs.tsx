@@ -1,16 +1,16 @@
 "use client";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import { RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { reFetchLearners } from "@/services/server-actions/refetchActions";
+import { Button } from "@/components/ui/button";
+import { reFetchStaffs } from "@/services/server-actions/refetchActions";
 
-function RefreshLearners() {
+function RefreshStaffs() {
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const refreshLearners = async () => {
+  const refreshStaffs = async () => {
     setIsRefreshing(true);
     try {
-      await reFetchLearners();
+      await reFetchStaffs();
     } catch (error) {
       console.error(error);
     } finally {
@@ -21,7 +21,7 @@ function RefreshLearners() {
     <Button
       size="icon"
       variant="outline"
-      onClick={refreshLearners}
+      onClick={refreshStaffs}
       disabled={isRefreshing}
     >
       <RefreshCw className={cn({ "animate-spin": isRefreshing })} />
@@ -29,4 +29,4 @@ function RefreshLearners() {
   );
 }
 
-export default RefreshLearners;
+export default RefreshStaffs;

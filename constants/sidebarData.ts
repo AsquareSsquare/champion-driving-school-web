@@ -1,5 +1,12 @@
 import { SideBarMenu } from "@/types/root-types";
-import { Calendar, PlusCircleIcon, Split, UserPlus, Users } from "lucide-react";
+import {
+  Calendar,
+  ContactRound,
+  PlusCircleIcon,
+  Split,
+  UserPlus,
+  Users,
+} from "lucide-react";
 import { DASHBOARD_PAGE } from "@/constants/data";
 
 export const sideBarNavItems: SideBarMenu[] = [
@@ -26,6 +33,11 @@ export const sideBarNavItemsAdmin: SideBarMenu[] = [
   //   url: `/${DASHBOARD_PAGE}/create-branch`,
   //   icon: Split,
   // },
+  {
+    title: "All staffs",
+    url: `/${DASHBOARD_PAGE}/all-staffs`,
+    icon: ContactRound,
+  },
   {
     title: "Add staff",
     url: `/${DASHBOARD_PAGE}/create-staff`,

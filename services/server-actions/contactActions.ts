@@ -7,7 +7,7 @@ import { serverAPIs } from "@/services/apis";
 const { GET_ALL_CONTACTS_API } = serverAPIs;
 
 export async function getAllContacts(): Promise<{
-  contacts: Contact[];
+  contacts: Contact[] | null;
   message: string;
 }> {
   try {

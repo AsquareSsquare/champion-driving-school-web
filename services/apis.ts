@@ -33,6 +33,7 @@ export const branchEndpoints = {
 
 export const staffEndpoints = {
   ADD_STAFF_API: `${baseUrl}/auth/signup`,
+  DELETE_STAFF_API: `${baseUrl}/admin/staff`,
 };
 
 export const attendanceEndpoints = {
@@ -55,4 +56,7 @@ export const serverAPIs = {
 
   // ADMIN
   GET_ALL_CONTACTS_API: `${serverUrl}/admin/contacts`,
+
+  // Staff
+  GET_ALL_STAFFS_API: `${serverUrl}/admin/staff`,
 };

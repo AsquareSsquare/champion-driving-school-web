@@ -49,7 +49,7 @@ export async function fetchUser(
       return { user: null, message: "could not fetch user" };
     }
     const result = await response.json();
-    return { user: result.data.user, message: result.data.message };
+    return { user: result.data, message: result.data.message };
   } catch (error) {
     console.error(error);
     return { user: null, message: "Error fetching user" };

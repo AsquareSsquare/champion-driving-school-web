@@ -6,7 +6,7 @@ async function AllBookings() {
   const { contacts } = await getAllContacts();
   return (
     <>
-      {contacts.length > 0 ? (
+      {contacts && contacts.length > 0 ? (
         <div className="grid grid-cols-1 @xl/main:grid-cols-2 @5xl/main:grid-cols-3 gap-6">
           {contacts.map((contact) => (
             <BookingCard key={contact.id} booking={contact} />

@@ -8,6 +8,7 @@ const adminRouts = [
   `/${DASHBOARD_PAGE}/create-branch`,
   `/${DASHBOARD_PAGE}/create-staff`,
   `/${DASHBOARD_PAGE}/bookings`,
+  `/${DASHBOARD_PAGE}/all-staffs`,
 ];
 
 const intlMiddleware = createMiddleware(routing);

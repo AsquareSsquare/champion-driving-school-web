@@ -35,7 +35,7 @@ function LearnersTable({
   branches: Branch[];
   branchId?: string;
 }) {
-  const [selectedLearners, setSelectedLearners] = useState<Learner[]>([]);
+  // const [selectedLearners, setSelectedLearners] = useState<Learner[]>([]);
 
   // Modal states
   const [markAttendanceModal, setMarkAttendanceModal] = useState<
@@ -50,7 +50,7 @@ function LearnersTable({
     undefined,
   );
 
-  // Form column
+  // Learner column
   const learnerColumn: ColumnDef<Learner>[] = [
     {
       accessorKey: "name",
@@ -201,9 +201,9 @@ function LearnersTable({
         data={learners}
         customComp={<BranchSelector branches={branches} branchId={branchId} />}
         searchKey="name"
-        selectedText="Mark attendance"
+        // selectedText="Mark attendance"
         // enableRowSelection
-        setSelectedItems={setSelectedLearners}
+        // setSelectedItems={setSelectedLearners}
       />
 
       <CustomModal
