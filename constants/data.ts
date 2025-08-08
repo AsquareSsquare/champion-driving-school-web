@@ -315,6 +315,9 @@ export const instructors: Instructor[] = [
 ];
 
 export const galleryImages = [
+  "/images/RMB_car_1.png",
+  "/images/RMB_car_2.png",
+  // "/images/RMB_car_3.png",
   "/gallery/img_1.jpg",
   "/gallery/img_2.jpg",
   "/gallery/img_3.jpg",
